@@ -53,7 +53,7 @@ CREATE TABLE "detail" (
 );
 CREATE TABLE "metrics" (
     "id" int NOT NULL,
-    "accreditor_code" int,
+    "accreditor_code" varchar,
     "accreditor" varchar,
     "degrees_awarded_predominant" int,
     "degrees_awarded_highest" int,
@@ -62,7 +62,7 @@ CREATE TABLE "metrics" (
     "ft_faculty_rate" real,
     "faculty_salary" real,
     "tuition_revenue_per_fte" real,
-    "price_calculator_url" real,
+    "price_calculator_url" varchar,
     "instructional_expenditure_per_fte" real,
     "degree_urbanization" varchar,
     "carnegie_size_setting" int,
