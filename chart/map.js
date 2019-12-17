@@ -37,14 +37,17 @@ Plotly.d3.csv('../output_charts/full_query.csv', function (err, rows) {
     }
   }
 
-  function getStateData(chosenTuition, chosenState) {
+  function getStateData(chosenTuition, chosenState, chosenCity) {
+
 
     listLat = [],
       listLong = [],
       citySizeInState = [],
       citySizeOutState = [],
       citySize = [],
-      hoverText = [];
+      hoverText = [],
+      listofCities = [];
+
     for (var i = 0; i < schoolState.length; i++) {
       if (schoolState[i] === chosenState) {
         currentSizeOut = tuitionOut[i] / scale;
@@ -75,32 +78,30 @@ Plotly.d3.csv('../output_charts/full_query.csv', function (err, rows) {
         currentCity = schoolCity[i];
         var currentText = "<b>" + schoolName[i] + "</b>" + "<br><b> Out of State Tuition: </b>" + "$" + thousands_separators(tuitionOut[i])
           + "<br><b> Tuition in State: </b>" + "$" + thousands_separators(tuitionIn[i]);
-          currentLat = schoolLat[i];
-          currentLong = schoolLong[i];
-          citySizeInState.push(currentSizeIn);
-          citySizeOutState.push(currentSizeOut);
-          listofCities.push(currentCity)
-          hoverText.push(currentText);
-          listLat.push(currentLat);
-          listLong.push(currentLong);
+        currentLat = schoolLat[i];
+        currentLong = schoolLong[i];
+        citySizeInState.push(currentSizeIn);
+        citySizeOutState.push(currentSizeOut);
+        listofCities.push(currentCity)
+
+        hoverText.push(currentText);
+        listLat.push(currentLat);
+        listLong.push(currentLong);
       }
     }
     if (chosenTuition === "In State") { citySize = citySizeInState }
     else if (chosenTuition === "Out of State") { citySize = citySizeOutState }
 
-    if (chosenState === "All") { list = listofStates }
-    if (chosenState != "All") { list = listofCities }
   };
 
 
 
 
 
+  setBubblePlot("In State", 'All', "All")
 
-  setBubblePlot("In State", 'All')
-
-  function setBubblePlot(chosenTuition, chosenState) {
-    getStateData(chosenTuition, chosenState);
+  function setBubblePlot(chosenTuition, chosenState, chosenCity) {
+    getStateData(chosenTuition, chosenState, chosenCity);
 
     var data_map = [{
       type: 'scattergeo',
@@ -165,7 +166,7 @@ Plotly.d3.csv('../output_charts/full_query.csv', function (err, rows) {
     var trace1_table = {
       type: 'scatter',
       x: tuitionIn,
-      y: list,
+      y: listofStates,
       mode: 'markers',
       name: 'Tuition In State',
       marker: {
@@ -181,7 +182,7 @@ Plotly.d3.csv('../output_charts/full_query.csv', function (err, rows) {
 
     var trace2_table = {
       x: tuitionOut,
-      y: listofCities,
+      y: listofStates,
       mode: 'markers',
       name: 'Tuition Out of State',
       marker: {
@@ -244,7 +245,8 @@ Plotly.d3.csv('../output_charts/full_query.csv', function (err, rows) {
 
   var innerContainer = document.querySelector('[data-num="0"'),
     tuitionSelector = innerContainer.querySelector('.tuition'),
-    stateSelector = innerContainer.querySelector('.statedata');
+    stateSelector = innerContainer.querySelector('.statedata'),
+    citySelector = innerContainer.querySelector('.citydata');
 
   function assignOptions(textArray, selector) {
     for (var i = 0; i < textArray.length; i++) {
@@ -255,19 +257,29 @@ Plotly.d3.csv('../output_charts/full_query.csv', function (err, rows) {
   }
 
 
-  listofStatesSelector = listofStates.sort()
-  listofStatesSelector.unshift("All")
+  listofStates = listofStates.sort()
+  listofStates.unshift("All")
+
+
+  listofCities = listofCities.sort(),
+    listofCities.unshift("All"),
+    listofCities = (unique = [...new Set(listofCities)]),
 
 
 
-  assignOptions(listofStatesSelector, stateSelector);
-  assignOptions(["In State", "Out of State"], tuitionSelector)
+    assignOptions(listofStates, stateSelector);
+  assignOptions(listofCities, citySelector);
+  assignOptions(["In State", "Out of State"], tuitionSelector);
 
   function updateState() {
-    setBubblePlot(tuitionSelector.value, stateSelector.value);
+    setBubblePlot(tuitionSelector.value, stateSelector.value, citySelector.value);
   }
 
   stateSelector.addEventListener('change', updateState, false);
+  citySelector.addEventListener('change', function() {
+    updateState() 
+    getStateData(tuitionSelector.value, stateSelector.value, citySelector.value);
+  }, false);
   tuitionSelector.addEventListener('change', updateState, false);
 
 });
