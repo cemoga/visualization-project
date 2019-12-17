@@ -1,106 +1,3 @@
-Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/2014_us_cities.csv', function (err, rows) {
-  function unpack(rows, key) {
-    return rows.map(function (row) { return row[key]; });
-  }
-  var cityName = unpack(rows, 'name'),
-    cityPop = unpack(rows, 'pop'),
-    cityLat = unpack(rows, 'lat'),
-    cityLon = unpack(rows, 'lon'),
-    color = [, "rgb(255,65,54)", "rgb(133,20,75)", "rgb(255,133,27)", "lightgrey"],
-    citySize = [],
-    hoverText = [],
-    scale = 50000;
-
-  for (var i = 0; i < cityPop.length; i++) {
-    var currentSize = cityPop[i] / scale;
-    var currentText = cityName[i] + "<br>Population: " + cityPop[i];
-    citySize.push(currentSize);
-    hoverText.push(currentText);
-  }
-
-  var data = [{
-    type: 'scattergeo',
-    locationmode: 'USA-states',
-    lat: cityLat,
-    lon: cityLon,
-    text: hoverText,
-    hoverinfo: 'text',
-    marker: {
-      size: citySize,
-      line: {
-        color: 'black',
-        width: 2
-      },
-
-    }
-  }];
-
-  var layout = {
-    title: '2014 US City Populations',
-    showlegend: false,
-    geo: {
-      scope: 'usa',
-      projection: {
-        type: 'albers usa'
-      },
-      showland: true,
-      landcolor: 'rgb(217, 217, 217)',
-      subunitwidth: 1,
-      countrywidth: 1,
-      subunitcolor: 'rgb(255,255,255)',
-      countrycolor: 'rgb(255,255,255)'
-    },
-  };
-
-  Plotly.plot(myDiv_2, data, layout, { showLink: false, showSendToCloud: true });
-});
-
-///////////////// sample filter
-
-function makeTrace(i) {
-  return {
-    y: Array.apply(null, Array(10)).map(() => Math.random()),
-    line: {
-      shape: 'spline',
-      color: 'red'
-    },
-    visible: i === 0,
-    name: 'Data set ' + i,
-  };
-}
-
-Plotly.plot('myDiv_1', [0, 1, 2, 3].map(makeTrace), {
-  updatemenus: [
-    {
-      y: 1,
-      yanchor: 'top',
-      buttons: [{
-        method: 'restyle',
-        args: ['visible', [true, false, false, false]],
-        label: 'Data set 0'
-      }, {
-        method: 'restyle',
-        args: ['visible', [false, true, false, false]],
-        label: 'Data set 1'
-      }, {
-        method: 'restyle',
-        args: ['visible', [false, false, true, false]],
-        label: 'Data set 2'
-      }, {
-        method: 'restyle',
-        args: ['visible', [false, false, false, true]],
-        label: 'Data set 3'
-      }]
-    }],
-});
-
-
-
-
-
-/////////////////// end sample filter
-
-// Second Plot
 
 // Function for thousands formatting
 
@@ -117,19 +14,22 @@ Plotly.d3.csv('../output_charts/full_query.csv', function (err, rows) {
     return rows.map(function (row) { return row[key]; });
   }
 
-  var schoolName = unpack(rows, 'name')
-  tuitionOut = unpack(rows, 'tuition_out_of_state'),
+  var schoolName = unpack(rows, 'name'),
+    tuitionOut = unpack(rows, 'tuition_out_of_state'),
+    tuitionIn = unpack(rows, 'tuition_in_state'),
     tuitionIn = unpack(rows, 'tuition_in_state'),
     schoolLat = unpack(rows, 'location_lat'),
     schoolLong = unpack(rows, 'location_lon'),
     schoolState = unpack(rows, 'state_fips_dec'),
+    schoolCity = unpack(rows, 'city'),
     color = [, "rgb(255,65,54)", "rgb(133,20,75)", "rgb(255,133,27)", "lightgrey"],
+    listofStates = [],
+    listofCities = [],
     listLat = [],
     listLong = [],
-    listofStates = [],
     citySize = [],
     hoverText = [],
-    scale = 3000;
+    scale = 2000;
 
   for (var i = 0; i < schoolState.length; i++) {
     if (listofStates.indexOf(schoolState[i]) === -1) {
@@ -137,41 +37,72 @@ Plotly.d3.csv('../output_charts/full_query.csv', function (err, rows) {
     }
   }
 
-  function getStateData(chosenState) {
-    console.log(chosenState)
+  function getStateData(chosenTuition, chosenState) {
+
+    listLat = [],
+      listLong = [],
+      citySizeInState = [],
+      citySizeOutState = [],
+      citySize = [],
+      hoverText = [];
     for (var i = 0; i < schoolState.length; i++) {
       if (schoolState[i] === chosenState) {
-        currentSize = tuitionOut[i] / scale;
+        currentSizeOut = tuitionOut[i] / scale;
+        currentSizeIn = tuitionIn[i] / scale;
+
+        currentTuitionIn = tuitionIn[i]
+        currentTuitionOut = tuitionOut[i]
+
+        currentCity = schoolCity[i];
         var currentText = "<b>" + schoolName[i] + "</b>" + "<br><b> Out of State Tuition: </b>" + "$" + thousands_separators(tuitionOut[i])
           + "<br><b> Tuition in State: </b>" + "$" + thousands_separators(tuitionIn[i]);
         currentLat = schoolLat[i];
         currentLong = schoolLong[i];
-        citySize.push(currentSize);
+        citySizeInState.push(currentSizeIn);
+        citySizeOutState.push(currentSizeOut);
+        listofCities.push(currentCity)
         hoverText.push(currentText);
         listLat.push(currentLat);
         listLong.push(currentLong);
       }
+      if (chosenState === "All") {
+        currentSizeOut = tuitionOut[i] / scale;
+        currentSizeIn = tuitionIn[i] / scale;
+
+        currentTuitionIn = tuitionIn[i]
+        currentTuitionOut = tuitionOut[i]
+
+        currentCity = schoolCity[i];
+        var currentText = "<b>" + schoolName[i] + "</b>" + "<br><b> Out of State Tuition: </b>" + "$" + thousands_separators(tuitionOut[i])
+          + "<br><b> Tuition in State: </b>" + "$" + thousands_separators(tuitionIn[i]);
+          currentLat = schoolLat[i];
+          currentLong = schoolLong[i];
+          citySizeInState.push(currentSizeIn);
+          citySizeOutState.push(currentSizeOut);
+          listofCities.push(currentCity)
+          hoverText.push(currentText);
+          listLat.push(currentLat);
+          listLong.push(currentLong);
+      }
     }
+    if (chosenTuition === "In State") { citySize = citySizeInState }
+    else if (chosenTuition === "Out of State") { citySize = citySizeOutState }
+
+    if (chosenState === "All") { list = listofStates }
+    if (chosenState != "All") { list = listofCities }
   };
 
 
 
 
-  // // Out of State Tuition
-  // for (var i = 0; i < tuitionOut.length; i++) {
-  //   var currentSize = tuitionOut[i] / scale;
-  //   var currentText = "<b>" + schoolName[i] + "</b>" + "<br><b> Out of State Tuition: </b>" + "$" + thousands_separators(tuitionOut[i])
-  //     + "<br><b> Tuition in State: </b>" + "$" + thousands_separators(tuitionIn[i]);
-  //   citySize.push(currentSize);
-  //   hoverText.push(currentText);
-  // }
 
-  setBubblePlot('Alabama')
 
-  function setBubblePlot(chosenState) {
-    getStateData(chosenState);
+  setBubblePlot("In State", 'All')
 
-    var data = [{
+  function setBubblePlot(chosenTuition, chosenState) {
+    getStateData(chosenTuition, chosenState);
+
+    var data_map = [{
       type: 'scattergeo',
       locationmode: 'USA-states',
       lat: listLat,
@@ -187,15 +118,22 @@ Plotly.d3.csv('../output_charts/full_query.csv', function (err, rows) {
       }
     }];
 
-    var layout = {
+    var layout_map = {
       title: 'Tuition Out of State',
-      showlegend: true,
+      showlegend: false,
       geo: {
         scope: 'usa',
+        // scope: 'north america',
+        resolution: 50,
+        lonaxis: {
+          'range': [-180, -55]
+        },
+        lataxis: {
+          'range': [40, 70]
+        },
         projection: {
           type: 'albers usa'
         },
-
         showland: true,
         landcolor: 'rgb(217, 217, 217)',
         subunitwidth: 1,
@@ -203,19 +141,109 @@ Plotly.d3.csv('../output_charts/full_query.csv', function (err, rows) {
         subunitcolor: 'rgb(255,255,255)',
         countrycolor: 'rgb(255,255,255)'
       },
-      lonaxis: {
-        'range': [-70, -55]
-      },
-      lataxis: {
-        'range': [60, 70]
-      },
 
     };
 
-    Plotly.newPlot('plotdiv', data, layout, { showLink: false, showSendToCloud: true })
+    Plotly.newPlot('plotdiv', data_map, layout_map, { showLink: false, showSendToCloud: true })
+
+    var data_gauge = [
+      {
+        type: "indicator",
+        mode: "number+gauge+delta",
+        gauge: { shape: "bullet" },
+        delta: { reference: 300 },
+        value: 220,
+        domain: { x: [0, 1], y: [0, 1] },
+        title: { text: "Profit" }
+      }
+    ];
+
+    var layout_gauge = { width: 600, height: 250 };
+
+    Plotly.newPlot('myDiv_1.5', data_gauge, layout_gauge);
+
+    var trace1_table = {
+      type: 'scatter',
+      x: tuitionIn,
+      y: list,
+      mode: 'markers',
+      name: 'Tuition In State',
+      marker: {
+        color: 'rgba(156, 165, 196, 0.95)',
+        line: {
+          color: 'rgba(156, 165, 196, 1.0)',
+          width: 1,
+        },
+        symbol: 'circle',
+        size: 16
+      }
+    };
+
+    var trace2_table = {
+      x: tuitionOut,
+      y: listofCities,
+      mode: 'markers',
+      name: 'Tuition Out of State',
+      marker: {
+        color: 'rgba(204, 204, 204, 0.95)',
+        line: {
+          color: 'rgba(217, 217, 217, 1.0)',
+          width: 1,
+        },
+        symbol: 'circle',
+        size: 16
+      }
+    };
+
+    var data = [trace1_table, trace2_table];
+
+    var layout = {
+      title: 'Metrics for State',
+      xaxis: {
+        showgrid: false,
+        showline: true,
+        linecolor: 'rgb(102, 102, 102)',
+        titlefont: {
+          font: {
+            color: 'rgb(204, 204, 204)'
+          }
+        },
+        tickfont: {
+          font: {
+            color: 'rgb(102, 102, 102)'
+          }
+        },
+        autotick: false,
+        dtick: 10,
+        ticks: 'outside',
+        tickcolor: 'rgb(102, 102, 102)'
+      },
+      margin: {
+        l: 140,
+        r: 40,
+        b: 50,
+        t: 80
+      },
+      legend: {
+        font: {
+          size: 10,
+        },
+        yanchor: 'middle',
+        xanchor: 'right'
+      },
+      width: 600,
+      height: 600,
+      paper_bgcolor: 'rgb(254, 247, 234)',
+      plot_bgcolor: 'rgb(254, 247, 234)',
+      hovermode: 'closest'
+    };
+
+    Plotly.newPlot('myDiv_1.6', data, layout);
+
   };
 
   var innerContainer = document.querySelector('[data-num="0"'),
+    tuitionSelector = innerContainer.querySelector('.tuition'),
     stateSelector = innerContainer.querySelector('.statedata');
 
   function assignOptions(textArray, selector) {
@@ -226,15 +254,20 @@ Plotly.d3.csv('../output_charts/full_query.csv', function (err, rows) {
     }
   }
 
-  listofStates = listofStates.sort()
 
-  assignOptions(listofStates, stateSelector);
+  listofStatesSelector = listofStates.sort()
+  listofStatesSelector.unshift("All")
+
+
+
+  assignOptions(listofStatesSelector, stateSelector);
+  assignOptions(["In State", "Out of State"], tuitionSelector)
 
   function updateState() {
-
-    setBubblePlot(stateSelector.value);
+    setBubblePlot(tuitionSelector.value, stateSelector.value);
   }
 
   stateSelector.addEventListener('change', updateState, false);
+  tuitionSelector.addEventListener('change', updateState, false);
 
 });
