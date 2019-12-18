@@ -20,7 +20,7 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','') or f"postgres://postgres:postgres@localhost:5432/school_db"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','') or f"postgres://postgres:postgres@localhost:5432/education_db"
 db = SQLAlchemy(app)
 
 # reflect an existing database into a new model
