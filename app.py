@@ -20,7 +20,7 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','') or f"postgres://postgres:postgres@localhost:5432/education_db"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','') or f"postgres://postgres:7718bill@localhost:5432/education_db"
 db = SQLAlchemy(app)
 
 # reflect an existing database into a new model
@@ -42,17 +42,17 @@ def index():
 
 @app.route("/json")
 def json():
-    """Return the homepage."""
+    """Return the school metadata."""
     result = db.session.query(basic.name, basic.state,metrics.tuition_in_state,metrics.tuition_out_of_state,geoloc.location_lat,geoloc.location_lon).filter(basic.id==geoloc.id).filter(basic.id==metrics.id).all()
-    schools=[]
+    schools = []
     for name, state, tuition_IS,tuition_OS, lat, lon in result:
         json = {}
-        json["Name"]=name
-        json["State"]=state
-        json["Tuition_IS"]=tuition_IS
-        json["Tuition_OS"]=tuition_OS
-        json["Lat"]=lat
-        json["Lon"]=lon
+        json["Name"] = name
+        json["State"] = state
+        json["Tuition_IS"] = tuition_IS
+        json["Tuition_OS"] = tuition_OS
+        json["Lat"] = lat
+        json["Lon"] = lon
         schools.append(json)
     return jsonify(schools)
 
