@@ -4,14 +4,27 @@
 </head>
 
 <body>
-    <div class="plot" id="plotdivmap"></div>
-    <div class="control-row" style="text-align: center;">
-        <b> Tuition:</b> <select class="tuition"></select>
-        <b> State:</b> <select class="statedata"></select>
-        <b> City:</b> <select class="citydata"></select>
+    <div>
+        <div class="plot" id="plotdivmap"></div>
+        <div class="control-row" style="text-align: center;">
+            <b> Variable:</b> <select class="variabledata"></select>
+            <b> State:</b> <select class="statedata"></select>
+            <b> City:</b> <select class="citydata"></select>
+        </div>
+        <hr>
+        <div class="plot" id="plotdivgauge" style="margin-top: 0; padding: 10%; padding-top: 0%; overflow: visible;"></div>
+        <hr>
+        <div class="titlemetadata">
+            <h3>Metadata</h3>
+        </div>
+        <div class="textmap">text</div>
+        <div class="textsource">
+            <p><b>Source of data: </b></p><a href="https://collegescorecard.ed.gov/data/documentation/" target="_blank">US Department of Eduction
+                    - API</a>
+        </div>
     </div>
-    <div class="plot" id="plotdivgauge"></div>
+
     <div class="plot" id="plotdivtable"></div>
-    
+
     <script src="map.js"></script>
 </body>
