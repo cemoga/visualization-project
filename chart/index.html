@@ -4,23 +4,14 @@
 </head>
 
 <body>
-    <!-- Plotly chart will be drawn inside this DIV -->
-    <div class="showcase__section" id="bubble">
-        <div class="spacer --small"></div>
-        <div id="bubbleplots">
-            <div class="bubbleplot" data-num="0">
-                <div class="plot" id="plotdiv"></div>
-                <div class="control-row">
-                    <b> Tuition:</b> <select class="tuition"></select>
-                    <b> State:</b> <select class="statedata"></select>
-                    <b> City:</b> <select class="citydata"></select>
-                </div>
-            </div>
-        </div>
+    <div class="plot" id="plotdivmap"></div>
+    <div class="control-row" style="text-align: center;">
+        <b> Tuition:</b> <select class="tuition"></select>
+        <b> State:</b> <select class="statedata"></select>
+        <b> City:</b> <select class="citydata"></select>
     </div>
-    <div id="myDiv_1.5"></div>
-    <div id="myDiv_1.6"></div>
-    <div id="myDiv_1"></div>
-    <div id="myDiv_2"></div>
+    <div class="plot" id="plotdivgauge"></div>
+    <div class="plot" id="plotdivtable"></div>
+    
     <script src="map.js"></script>
 </body>
