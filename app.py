@@ -7,6 +7,7 @@ import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session,sessionmaker
 from sqlalchemy import create_engine
+from sqlalchemy.sql import func
 
 from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
@@ -20,7 +21,7 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','') or f"postgres://postgres:postgres@localhost:5432/education_db"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','') or f"postgres://postgres:7718bill@localhost:5432/education_db"
 db = SQLAlchemy(app)
 
 # reflect an existing database into a new model
@@ -92,17 +93,24 @@ def metric():
     return jsonify(cesars_page)
 
 
-@app.route("/names")
+@app.route("/tuition")
 def names():
-    """Return a list of sample names."""
+    """Return a dictionary of tuitions."""
 
-    # Use Pandas to perform the sql query
-   
-    stmt = db.session.query(basic).statement
-    df = pd.read_sql_query(stmt, db.session.bind) 
+    qry = db.session.query(basic.state,func.avg(metrics.tuition_in_state),func.avg(metrics.tuition_out_of_state)).filter(basic.id==metrics.id)
+    qry = qry.group_by(basic.state) 
+
+    tuition = []
+    for state,tuition_IS,tuition_OS in qry:      
+        
+        json = {}
+        json["State"] = state
+        json["tuitionIn"] = round(tuition_IS,0)
+        json["tuitionOut"] = round(tuition_OS,0)
+        tuition.append(json)
 
     # Return a list of the column names (sample names)
-    return jsonify(list(df["name"]))
+    return jsonify(tuition)
 
 
 # @app.route("/metadata/<sample>")
