@@ -37,7 +37,30 @@
                </ul>
           </ul>
           <li><a href = "/metric">/metric</a></li>
+          <ul>
+            <li>Returns a list of:</li>
+            <ul>
+              <li> In-state Tuition</li>
+              <li> Out of State tuition</li>
+              <li>State</li>
+            </ul>
+          </ul>
+
           <li><a href = "/tuition">/tuition</a></li>
+          <p>d3.json(tuition).then((data) => {
+            data.forEach((item) => {
+              console.log(item)
+            });
+          });
+          </p>
+          <ul>
+            <li>Returns a list of:</li>
+            <ul>
+              <li> In-state Tuition</li>
+              <li> Out of State tuition</li>
+              <li>State</li>
+            </ul>
+          </ul>
   
         </ol>
       </div>
