@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS "men_only";
 DROP TABLE IF EXISTS "women_only";
 DROP TABLE IF EXISTS "religious_affiliation";
 CREATE TABLE "basic" (
-    "id" int NOT NULL,
+    "id" int NOT NULL  PRIMARY KEY,
     "ope8_id" int,
     "ope6_id" int,
     "name" varchar,
@@ -34,11 +34,10 @@ CREATE TABLE "basic" (
     "zip" varchar,
     "region_id" int,
     "locale" int,
-    "school_url" varchar,
-    PRIMARY KEY ("id");
-
+    "school_url" varchar
+);
 CREATE TABLE "detail" (
-    "id" int NOT NULL,
+    "id" int NOT NULL  PRIMARY KEY,
     "operating" int,
     "under_investigation" int,
     "main_campus" int,
@@ -48,10 +47,9 @@ CREATE TABLE "detail" (
     "ownership" int,
     "online_only" int,
     "open_admissions_policy" int
-    PRIMARY KEY ("id")
 );
 CREATE TABLE "metrics" (
-    "id" int NOT NULL,
+    "id" int NOT NULL  PRIMARY KEY,
     "accreditor_code" varchar,
     "accreditor" varchar,
     "degrees_awarded_predominant" int,
@@ -72,111 +70,89 @@ CREATE TABLE "metrics" (
     "religious_affiliation" int,
     "tuition_in_state" real,
     "tuition_out_of_state" real
-    PRIMARY KEY ("id")
 );
 CREATE TABLE "geoloc" (
-    "id" int NOT NULL,
+    "id" int NOT NULL  PRIMARY KEY,
     "location_lon" real,
     "location_lat" real
-    PRIMARY KEY ("id")
 );
 CREATE TABLE "state_fips" (
-    "code" int NOT NULL,
-    "description" varchar,
-    PRIMARY KEY ("code")
+    "code" int NOT NULL PRIMARY KEY,
+    "description" varchar
 );
 CREATE TABLE "region_id" (
-    "code" int NOT NULL,
-    "description" varchar,
-    PRIMARY KEY ("code")
+    "code" int NOT NULL PRIMARY KEY,
+    "description" varchar
 );
 CREATE TABLE "locale" (
-    "code" int NOT NULL,
-    "description" varchar,
-    PRIMARY KEY ("code")
+    "code" int NOT NULL PRIMARY KEY,
+    "description" varchar
 );
 CREATE TABLE "operating" (
-    "code" int NOT NULL,
-    "description" varchar,
-    PRIMARY KEY ("code")
+    "code" int NOT NULL PRIMARY KEY,
+    "description" varchar
 );
 CREATE TABLE "under_investigation" (
-    "code" int NOT NULL,
-    "description" varchar,
-    PRIMARY KEY ("code")
+    "code" int NOT NULL PRIMARY KEY,
+    "description" varchar
 );
 CREATE TABLE "main_campus" (
-    "code" int NOT NULL,
-    "description" varchar,
-    PRIMARY KEY ("code")
+    "code" int NOT NULL PRIMARY KEY,
+    "description" varchar
 );
 CREATE TABLE "institutional_characteristics_level" (
-    "code" int NOT NULL,
-    "description" varchar,
-    PRIMARY KEY ("code")
+    "code" int NOT NULL PRIMARY KEY,
+    "description" varchar
 );
 CREATE TABLE "ownership_peps" (
-    "code" int NOT NULL,
-    "description" varchar,
-    PRIMARY KEY ("code")
+    "code" int NOT NULL PRIMARY KEY,
+    "description" varchar
 );
 CREATE TABLE "ownership" (
-    "code" int NOT NULL,
-    "description" varchar,
-    PRIMARY KEY ("code")
+    "code" int NOT NULL PRIMARY KEY,
+    "description" varchar
 );
 CREATE TABLE "online_only" (
-    "code" int NOT NULL,
-    "description" varchar,
-    PRIMARY KEY ("code")
+    "code" int NOT NULL PRIMARY KEY,
+    "description" varchar
 );
 CREATE TABLE "open_admissions_policy" (
-    "code" int NOT NULL,
-    "description" varchar,
-    PRIMARY KEY ("code")
+    "code" int NOT NULL PRIMARY KEY,
+    "description" varchar
 );
 CREATE TABLE "degrees_awarded_predominant" (
-    "code" int NOT NULL,
-    "description" varchar,
-    PRIMARY KEY ("code")
+    "code" int NOT NULL PRIMARY KEY,
+    "description" varchar
 );
 CREATE TABLE "degrees_awarded_highest" (
-    "code" int NOT NULL,
-    "description" varchar,
-    PRIMARY KEY ("code")
+    "code" int NOT NULL PRIMARY KEY,
+    "description" varchar
 );
 CREATE TABLE "title_iv_eligibility_type" (
-    "code" int NOT NULL,
-    "description" varchar,
-    PRIMARY KEY ("code")
+    "code" int NOT NULL PRIMARY KEY,
+    "description" varchar
 );
 CREATE TABLE "carnegie_size_setting" (
-    "code" int NOT NULL,
-    "description" varchar,
-    PRIMARY KEY ("code")
+    "code" int NOT NULL PRIMARY KEY,
+    "description" varchar
 );
 CREATE TABLE "carnegie_undergrad" (
-    "code" int NOT NULL,
-    "description" varchar,
-    PRIMARY KEY ("code")
+    "code" int NOT NULL PRIMARY KEY,
+    "description" varchar
 );
 CREATE TABLE "carnegie_basic" (
-    "code" int NOT NULL,
-    "description" varchar,
-    PRIMARY KEY ("code")
+    "code" int NOT NULL PRIMARY KEY,
+    "description" varchar
 );
 CREATE TABLE "men_only" (
-    "code" int NOT NULL,
-    "description" varchar,
-    PRIMARY KEY ("code")
+    "code" int NOT NULL PRIMARY KEY,
+    "description" varchar
 );
 CREATE TABLE "women_only" (
-    "code" int NOT NULL,
-    "description" varchar,
-    PRIMARY KEY ("code")
+    "code" int NOT NULL PRIMARY KEY,
+    "description" varchar
 );
 CREATE TABLE "religious_affiliation" (
-    "code" int NOT NULL,
-    "description" varchar,
-    PRIMARY KEY ("code")
+    "code" int NOT NULL PRIMARY KEY,
+    "description" varchar
 )
