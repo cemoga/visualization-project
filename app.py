@@ -21,7 +21,7 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','') or f"postgres://postgres:7718bill@localhost:5432/education_db"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','') or f"postgres://postgres:postgres@localhost:5432/education_db"
 db = SQLAlchemy(app)
 
 # reflect an existing database into a new model
@@ -92,7 +92,6 @@ def metric():
         cesars_page.append(json)
     return jsonify(cesars_page)
 
-
 @app.route("/tuition")
 def names():
     """Return a dictionary of tuitions."""
@@ -111,6 +110,10 @@ def names():
 
     # Return a list of the column names (sample names)
     return jsonify(tuition)
+
+@app.route('/<string:page_name>/')
+def render_static(page_name):
+    return render_template('%s.html' % page_name)
 
 
 # @app.route("/metadata/<sample>")
