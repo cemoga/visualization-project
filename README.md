@@ -5,7 +5,7 @@
 <h4>Tools used in this project: </h4>
 <ol>
     <li>Python</li>
-    <ul><li>Libraries: </li></ul>
+    <ul type = "none"><li>Libraries: </li></ul>
     <ol type = "i">
         <li>Pandas</li>
         <li>SQLAlchemy</li>
@@ -15,7 +15,7 @@
     </ol>
     <li>SQL</li>
     <li>javascript</li>
-    <ul><li>Libraries:</li> </ul>
+    <ul type = "none"><li>Libraries:</li> </ul>
     <ol type = "i">
         <li>D3.js</li>
         <li>Plotly.js</li>
