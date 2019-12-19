@@ -35,10 +35,8 @@ CREATE TABLE "basic" (
     "region_id" int,
     "locale" int,
     "school_url" varchar,
-    CONSTRAINT "pk_basic" PRIMARY KEY (
-        "id"
-     )
-);
+    PRIMARY KEY ("id");
+
 CREATE TABLE "detail" (
     "id" int NOT NULL,
     "operating" int,
@@ -50,6 +48,7 @@ CREATE TABLE "detail" (
     "ownership" int,
     "online_only" int,
     "open_admissions_policy" int
+    PRIMARY KEY ("id")
 );
 CREATE TABLE "metrics" (
     "id" int NOT NULL,
@@ -73,149 +72,111 @@ CREATE TABLE "metrics" (
     "religious_affiliation" int,
     "tuition_in_state" real,
     "tuition_out_of_state" real
+    PRIMARY KEY ("id")
 );
 CREATE TABLE "geoloc" (
     "id" int NOT NULL,
     "location_lon" real,
     "location_lat" real
+    PRIMARY KEY ("id")
 );
 CREATE TABLE "state_fips" (
     "code" int NOT NULL,
     "description" varchar,
-    CONSTRAINT "pk_state_fips" PRIMARY KEY (
-        "code"
-     )
+    PRIMARY KEY ("code")
 );
 CREATE TABLE "region_id" (
     "code" int NOT NULL,
     "description" varchar,
-    CONSTRAINT "pk_region_id" PRIMARY KEY (
-        "code"
-     )
+    PRIMARY KEY ("code")
 );
 CREATE TABLE "locale" (
     "code" int NOT NULL,
     "description" varchar,
-    CONSTRAINT "pk_locale" PRIMARY KEY (
-        "code"
-     )
+    PRIMARY KEY ("code")
 );
 CREATE TABLE "operating" (
     "code" int NOT NULL,
     "description" varchar,
-    CONSTRAINT "pk_operating" PRIMARY KEY (
-        "code"
-     )
+    PRIMARY KEY ("code")
 );
 CREATE TABLE "under_investigation" (
     "code" int NOT NULL,
     "description" varchar,
-    CONSTRAINT "pk_under_investigation" PRIMARY KEY (
-        "code"
-     )
+    PRIMARY KEY ("code")
 );
 CREATE TABLE "main_campus" (
     "code" int NOT NULL,
     "description" varchar,
-    CONSTRAINT "pk_main_campus" PRIMARY KEY (
-        "code"
-     )
+    PRIMARY KEY ("code")
 );
 CREATE TABLE "institutional_characteristics_level" (
     "code" int NOT NULL,
     "description" varchar,
-    CONSTRAINT "pk_institutional_characteristics_level" PRIMARY KEY (
-        "code"
-     )
+    PRIMARY KEY ("code")
 );
 CREATE TABLE "ownership_peps" (
     "code" int NOT NULL,
     "description" varchar,
-    CONSTRAINT "pk_ownership_peps" PRIMARY KEY (
-        "code"
-     )
+    PRIMARY KEY ("code")
 );
 CREATE TABLE "ownership" (
     "code" int NOT NULL,
     "description" varchar,
-    CONSTRAINT "pk_ownership" PRIMARY KEY (
-        "code"
-     )
+    PRIMARY KEY ("code")
 );
 CREATE TABLE "online_only" (
     "code" int NOT NULL,
     "description" varchar,
-    CONSTRAINT "pk_online_only" PRIMARY KEY (
-        "code"
-     )
+    PRIMARY KEY ("code")
 );
 CREATE TABLE "open_admissions_policy" (
     "code" int NOT NULL,
     "description" varchar,
-    CONSTRAINT "pk_open_admissions_policy" PRIMARY KEY (
-        "code"
-     )
+    PRIMARY KEY ("code")
 );
 CREATE TABLE "degrees_awarded_predominant" (
     "code" int NOT NULL,
     "description" varchar,
-    CONSTRAINT "pk_degrees_awarded_predominant" PRIMARY KEY (
-        "code"
-     )
+    PRIMARY KEY ("code")
 );
 CREATE TABLE "degrees_awarded_highest" (
     "code" int NOT NULL,
     "description" varchar,
-    CONSTRAINT "pk_degrees_awarded_highest" PRIMARY KEY (
-        "code"
-     )
+    PRIMARY KEY ("code")
 );
 CREATE TABLE "title_iv_eligibility_type" (
     "code" int NOT NULL,
     "description" varchar,
-    CONSTRAINT "pk_title_iv_eligibility_type" PRIMARY KEY (
-        "code"
-     )
+    PRIMARY KEY ("code")
 );
 CREATE TABLE "carnegie_size_setting" (
     "code" int NOT NULL,
     "description" varchar,
-    CONSTRAINT "pk_carnegie_size_setting" PRIMARY KEY (
-        "code"
-     )
+    PRIMARY KEY ("code")
 );
 CREATE TABLE "carnegie_undergrad" (
     "code" int NOT NULL,
     "description" varchar,
-    CONSTRAINT "pk_carnegie_undergrad" PRIMARY KEY (
-        "code"
-     )
+    PRIMARY KEY ("code")
 );
 CREATE TABLE "carnegie_basic" (
     "code" int NOT NULL,
     "description" varchar,
-    CONSTRAINT "pk_carnegie_basic" PRIMARY KEY (
-        "code"
-     )
+    PRIMARY KEY ("code")
 );
 CREATE TABLE "men_only" (
     "code" int NOT NULL,
     "description" varchar,
-    CONSTRAINT "pk_men_only" PRIMARY KEY (
-        "code"
-     )
+    PRIMARY KEY ("code")
 );
 CREATE TABLE "women_only" (
     "code" int NOT NULL,
     "description" varchar,
-    CONSTRAINT "pk_women_only" PRIMARY KEY (
-        "code"
-     )
+    PRIMARY KEY ("code")
 );
 CREATE TABLE "religious_affiliation" (
     "code" int NOT NULL,
     "description" varchar,
-    CONSTRAINT "pk_religious_affiliation" PRIMARY KEY (
-        "code"
-     )
+    PRIMARY KEY ("code")
 )
