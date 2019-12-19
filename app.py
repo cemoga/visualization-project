@@ -20,7 +20,7 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','') or f"postgres://postgres:7718bill@localhost:5432/education_db"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','') or f"postgres://postgres:PASSWORD@localhost:5432/education_db"
 db = SQLAlchemy(app)
 
 # reflect an existing database into a new model
@@ -32,6 +32,7 @@ Base.prepare(db.engine, reflect=True)
 basic = Base.classes.basic
 metrics = Base.classes.metrics
 geoloc = Base.classes.geoloc
+state_fips = Base.classes.state_fips
 
 
 @app.route("/")
@@ -46,6 +47,12 @@ def json():
     result = db.session.query(basic.name, basic.state,metrics.tuition_in_state,metrics.tuition_out_of_state,geoloc.location_lat,geoloc.location_lon).filter(basic.id==geoloc.id).filter(basic.id==metrics.id).all()
     schools = []
     for name, state, tuition_IS,tuition_OS, lat, lon in result:
+        if tuition_IS is None:
+            tuition_IS = ""
+        if tuition_OS is None:
+            tuition_OS = ""
+
+        
         json = {}
         json["Name"] = name
         json["State"] = state
@@ -55,6 +62,34 @@ def json():
         json["Lon"] = lon
         schools.append(json)
     return jsonify(schools)
+
+    
+@app.route("/metric")
+def metric():
+    """Return data for cesar."""
+
+    result = db.session.query(basic.name, basic.state, basic.city, metrics.tuition_in_state,metrics.tuition_out_of_state,metrics.faculty_salary, metrics.instructional_expenditure_per_fte,metrics.tuition_revenue_per_fte,geoloc.location_lat,geoloc.location_lon,state_fips.description).filter(basic.id==geoloc.id).filter(basic.id==metrics.id).filter(basic.state_fips==state_fips.code).all()
+
+    cesars_page = []
+    for name, state,city, tuition_IS,tuition_OS,fsal,expen_per_fte,tuition_rev, lat, lon,fips in result:
+        if tuition_IS is None:
+            tuition_IS = ""
+        if tuition_OS is None:
+            tuition_OS = ""       
+        json = {}
+        json["schoolName"] = name
+        json["schoolState"] = state
+        json["schoolCity"] = city
+        json["tuitionIn"] = tuition_IS
+        json["tuitionOut"] = tuition_OS
+        json["facultySalary"] = fsal
+        json["expenditurePerStudent"] = expen_per_fte
+        json["tuitionRevenuePerStudent"] = tuition_rev
+        json["schoolLat"] = lat
+        json["schoolLong"] = lon
+        json["Fips"] = fips
+        cesars_page.append(json)
+    return jsonify(cesars_page)
 
 
 @app.route("/names")
