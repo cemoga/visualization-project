@@ -97,7 +97,7 @@ def metric():
 def names():
     """Return a dictionary of tuitions."""
 
-    qry = db.session.query(basic.state,func.avg(metrics.tuition_in_state),func.avg(metrics.tuition_out_of_state)).filter(basic.id==metrics.id)
+    qry = db.session.query(basic.state,func.round(func.avg(metrics.tuition_in_state)),func.round(func.avg(metrics.tuition_out_of_state))).filter(basic.id==metrics.id)
     qry = qry.group_by(basic.state) 
 
     tuition = []
@@ -105,8 +105,8 @@ def names():
         
         json = {}
         json["State"] = state
-        json["tuitionIn"] = round(tuition_IS,0)
-        json["tuitionOut"] = round(tuition_OS,0)
+        json["tuitionIn"] = tuition_IS
+        json["tuitionOut"] = tuition_OS
         tuition.append(json)
 
     # Return a list of the column names (sample names)
