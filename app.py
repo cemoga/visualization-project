@@ -11,7 +11,7 @@ from sqlalchemy.sql import func
 
 from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
-# from config import (Password, Database)
+
 
 
 app = Flask(__name__)
@@ -21,7 +21,7 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','') or f"postgres://postgres:postgres@localhost:5432/education_db"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','') or f"postgres://postgres:7718bill@localhost:5432/education_db"
 db = SQLAlchemy(app)
 
 # reflect an existing database into a new model
@@ -34,6 +34,8 @@ basic = Base.classes.basic
 metrics = Base.classes.metrics
 geoloc = Base.classes.geoloc
 state_fips = Base.classes.state_fips
+detail = Base.classes.detail
+institutional_characteristics_level = Base.classes.institutional_characteristics_level
 
 
 @app.route("/")
@@ -93,7 +95,7 @@ def metric():
     return jsonify(cesars_page)
 
 @app.route("/tuition")
-def names():
+def tuition():
     """Return a dictionary of tuitions."""
 
     qry = db.session.query(basic.state,func.round(func.avg(metrics.tuition_in_state)),func.round(func.avg(metrics.tuition_out_of_state))).filter(basic.id==metrics.id)
@@ -110,6 +112,33 @@ def names():
 
     # Return a list of the column names (sample names)
     return jsonify(tuition)
+
+    
+@app.route("/yen")
+def yen():
+    """Return a dictionary of tuitions."""
+
+    qry = db.session.query(basic.state,metrics.tuition_in_state,metrics.tuition_out_of_state,geoloc.location_lon, geoloc.location_lat,basic.name, basic.city,basic.school_url,detail.ownership, institutional_characteristics_level.description,metrics.instructional_expenditure_per_fte).filter(basic.id==metrics.id).filter(basic.id==detail.id).filter(basic.id==geoloc.id).filter(detail.institutional_characteristics_level == institutional_characteristics_level.code).all()
+
+    yen = []
+    for state,tuition_IS,tuition_OS, lon, lat, name, city, url, ownership,term, spend_fte in qry:      
+        
+        json = {}
+        json["State"] = state
+        json["tuitionIn"] = tuition_IS
+        json["tuitionOut"] = tuition_OS
+        json["lon"] = lon
+        json["lat"] = lat
+        json["name"] = name
+        json["city"] = city
+        json["url"] = url
+        json["ownership"] = ownership
+        json["term"] = term
+        json["spend_fte"] = spend_fte
+        yen.append(json)
+
+    # Return a list of the column names (sample names)
+    return jsonify(yen)
 
 @app.route('/<string:page_name>/')
 def render_static(page_name):
