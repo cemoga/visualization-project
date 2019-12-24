@@ -1,79 +1,141 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Visualization Project</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-</head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-<body>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='CSS/style.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "../static/css/style.css">
 
-  <div class="container">
-    <div class="row">
-      <li class="col-md-12 jumbotron text-center">
-        <h1>Project Homepage Template</h1>
+    <title>College Database</title>
+
+  </head>
+
+  <header>
+        <div class= "container">
+            
+            <div class="row">
+                <div class="col-md-12 jumbotron text-center" id = "jumbo" >
+                  <h1><a href = "/" title = "Home" id = "logo"><h1 class="logo">College Database</h1></a></h1></div>
+              </div>
+        </div>
+    </header>
+    <div class = "row" id = "navigation_panel">
+        <div class ="col-md-3"></div>
+        <div class = "col-md-9">
+            <nav>
+                <ul>
+                    <li><a href="/metrics">College Financial Info</a></li>
+                    <li><a href="#">Placeholder</a></li>
+                    <li><a href="#">Placeholder</a></li>
+                </ul>
+            </nav>
+        </div>
+        
     </div>
-    <div>
-      <h2>Open console to see log of objects from <strong>/json</strong> path.</h2>
-        <p>There are two paths:</p>
-        <ol>
-          <li><a href = "/names">/names</a></li>
-          <ul>
-            <li>Returns a list of all school names</li>
-          </ul>
-          <li><a href="/json">/json</a></li>
-          <ul>
-            <li>Returns a json object with:<li>
-               <ul>
-                 <li>school name</li>
-                 <li> In-state Tuition</li>
-                 <li> Out of State tuition</li>
-                 <li>State</li>
-                 <li>Lattitude</li>
-                 <li>Longitude</li>
-               </ul>
-          </ul>
-          <li><a href = "/metric">/metric</a></li>
-          <ul>
-            Route to render the page:
-            <a href="/metrics">Metrics.html</a>
-            <li>Returns a list of:</li>
-            <ul>
-              <li> In-state Tuition</li>
-              <li> Out of State tuition</li>
-              <li>State</li>
-            </ul>
-          </ul>
+<br>
+     <body>
+        <div class = "container-fluid">
+            <div class = "row">
+                <div class = "col-md-3"></div>
+                <div class = "col-md-6" id ="section_desc">
+                    <div class = "box main">
+                            <div class = "heading">
+                            <h1 >
+                                <span class= "white thin"> Website Overview</span>
+                            </h1>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class = "row">
+                <div class = "col-md-3"></div>
+                <div class = "col-md-4">
+                    <div class = "box">
+                        <div class = "box_main">
+                            <p>This site was built to help visualize various college metrics supplied by <a href = "https://collegescorecard.ed.gov/data/documentation/" target = "__blank">www.collegescorecard.ed.gov</a>.</p>
+                            <p>Data is from calendar year 2017 and is updated annually.</p>
+                            <ul>
+                                <li>Information provided includes:</li>
+                                <ul>
+                                    <li>school Name</li>
+                                    <li>State</li>
+                                    <li>City</li>
+                                    <li>In State Tuition</li>
+                                    <li>Out of State Tuition</li>
+                                </ul>   
+                            </ul>
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class = "col-md-2" id = "padding"> </div>
+                <div class = "col-md-3"></div>
+            </div>
+            <div class = "row">
+                <div class = "col-md-3"></div>
+                <div class = "col-md-6" id = "section_two">
+                    <div class = "box_secondary">
+                        <div class ="heading2">
+                            <h1>
+                                <span class= "white thin">Metrics</span>
 
-          <li><a href = "/tuition">/tuition</a></li>
-          <p>d3.json(tuition).then((data) => {
-            data.forEach((item) => {
-              console.log(item)
-            });
-          });
-          </p>
-          <ul>
-            <li>Returns a list of:</li>
-            <ul>
-              <li> In-state Tuition</li>
-              <li> Out of State tuition</li>
-              <li>State</li>
-            </ul>
-          </ul>
-  
-        </ol>
-      </div>
-    </div>
-    
+                                </h1>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class = "col-md-3" id = "padding2"> </div> -->
+            </div>
+            <div class = "row">
+                <div class = "col-md-3"></div>
+                <div class = "col-md-4">
+                    <div id = "card">
+                        <div class="card" style="width: 18rem;">                          
+                          <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <div class = "states">Total States and Provinces</div>
+                            </div>
+                          </div>
+                          <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <div class = schools>Total Schools</div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+                <div class = "col-md-2" id = "padding2"> </div>
+                <div class = "col- md-3"></div>
+            </div>
+            <div class = "footer">
+                <footer>
+                    <section> 
+                        <div class = "footer_content">
+                            <nav class = "unstyled">
+                                <ul>
+                                    <li><a href = "#"> privacy Statement</a></li>
+                                    <li><a href = "#">Terms of Use</a></li>
+                                    <li><a href = "#">Contact</a></li>
+                                    <li><a href = "#">Site map</a></li>
+                                </ul>
+                            </nav>
+                            <p>Last updated 03Jan2020</p>
+                            <p>© 2019 College Database</p>
+                        </div>
+                    </section> 
+                </footer>
+            </div>
 
-  <!-- <script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script> -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
-
-  <script type="text/javascript" src="static/test.js"></script>
-
-</body>
-
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+        <script src="../static/dashboard.js"></script>
+    </body>
 </html>

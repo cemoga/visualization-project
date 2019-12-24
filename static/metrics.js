@@ -95,16 +95,19 @@ d3.json(url).then((data) => {
       currentTuitionOut = tuitionIn[i] // 4. Placeholder for the loop - "In-State Tuition" - Actual Value in $
 
       currentCity = schoolCity[i]; // 5. Stores the list of the cities for the chosen State
+
+    
+
       // 6. Information for the hoover text
       var currentText = "<b> Name: " + schoolName[i] + "</b>"
         + "<br><b> City: </b>" + schoolCity[i]
         + "<br><b> State: </b>" + schoolState[i]
         + "<br><b> Geolocation: </b>(" + schoolLat[i] + "," + schoolLong[i] + ")"
-        + "<br><b> Out of State Tuition: </b>" + "$" + tuitionOut[i]
-        + "<br><b> Tuition in State: </b>" + "$" + tuitionIn[i]
-        + "<br><b> Expenditure per Student: </b>" + "$" + expenditurePerStudent[i]
-        + "<br><b> Tuition Revenue per Student: </b>" + "$" + tuitionRevenuePerStudent[i];
-      currentLat = schoolLat[i]; // 7. Placeholder for the loop - Latitude
+        + "<br><b> Out of State Tuition: </b>"+ "$"+tuitionOut[i]
+        + "<br><b> Tuition in State: </b>"+ "$"+tuitionIn[i]
+        + "<br><b> Expenditure per Student: </b>" + "$"+expenditurePerStudent[i]
+        + "<br><b> Tuition Revenue per Student: </b>" + "$"+tuitionRevenuePerStudent[i];
+      currentLat = schoolLat[i]; // 7. Placeholder for the loop - Latitude"
       currentLong = schoolLong[i]; // 8. Placeholder for the loop - Longitude
 
       currentExpen = expenditurePerStudent[i] / scaleExp; // B. 10. Placeholder for the loop - "Expendiure per Student - Marker Size
@@ -423,3 +426,5 @@ d3.json(url).then((data) => {
     stateSelector.addEventListener('change', updateState, false),
     citySelector.addEventListener('change', updateCity, false);
 });
+
+

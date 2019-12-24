@@ -1,0 +1,252 @@
+ body {
+	margin: 0;
+	background:whie;
+	font-family: "effra";
+	font-weight: 300;
+}
+
+header {
+  background:  #2B3E70;
+  padding: 10px;
+}
+
+header::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+.metric{
+  padding-left: 30px;
+}
+.heading{
+  text-align: left;
+  background-color: #001E46 ;
+
+}
+.heading2{
+  text-align: left;
+  background-color: #001E46 ;
+  padding-left: 5px;
+
+}
+.box main{
+  padding-top:0px;
+  padding-left:0px;
+  text-align: center;
+  margin-top: 0;
+}
+.box_secondary{
+  padding-top:0px;
+  padding-left:0px;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.heading2 h1{
+  height: 135;
+}
+.sticky{
+  position:-webkit-sticky;
+  position: sticky;
+  top: 0;
+  padding-top:50px;
+}
+.compare{
+  text-align: center;
+}
+.thin{
+  font-weight: 100;
+}
+.white{
+  color: white !important
+}
+.blue{
+  color:#00A9E0 !important;
+}
+#section_desc{
+  background-color: #001E46 ;
+}
+#section_two{
+  padding-right: 0px;
+  background-color: #001E46 ;
+}
+#jumbo {
+  background-color: #2B3E70;
+  float: left;
+  padding: 10px 45px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color:black;
+}
+.logo{
+  color:#E8E8E7;
+  font-family: effra;
+}
+#logo{
+  text-decoration: none;
+}
+
+#navigation_panel{
+  background-color: #007CBD;
+}
+#navigation_panel nav {
+  float: right;
+  /* padding-right: 100px;
+  padding-left: 100px; */
+  padding-top: 15px;
+  
+}
+#padding{
+  background-color: #BAD9EA;
+}
+#padding2{
+  background-color: #00A9E0;
+}
+#padding nav{
+  color: white;
+}
+
+nav ul {
+  padding: 0;
+  list-style: none;
+  width:fit-content;
+}
+nav li {
+  display: inline-block;
+  padding-right: 20px;
+  position: relative;
+  text-align: center;
+}
+
+nav a {
+  color:#8ACBEC;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  margin-bottom: 0px;
+}
+
+nav a:hover {
+  color: #000;
+
+}
+
+nav a::before {
+  content: '';
+  display: block;
+  height: 5px;
+  background-color: #444;
+  position: absolute;
+  top: 0;
+  width: 0%;
+  transition: all ease-in-out 250ms;
+}
+
+nav a:hover::before {
+  width: 85%;
+}
+.container{
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.box{
+  background: white;
+  margin-top:50px;
+  margin-left:5px;
+  margin-right:5px;
+  margin-bottom:20px;
+  align-content: center;
+}
+.img{
+  max-width: 100%;
+}
+.title{
+    align-content: center;
+    color: white;
+
+}
+.footer{
+  position:relative;
+  margin-top: 2rem;
+  box-sizing: border-box;
+  display: block;
+  border-top: 15 px solid #007CBD;
+  background-color: #004b87;
+}
+.footer_option1{
+  background-color:#001E46;
+  display: inline;
+
+}
+.footer_content{
+  color:white;
+  text-align: center;
+  
+}
+.footer_content p{
+  margin-bottom:0;
+  margin-top: 0;
+}
+.footer_content nav{
+  margin-top: 15px;
+  display: inline-block;
+ text-align: center;
+}
+
+#card {
+  display: table;
+  padding-right: 20px;
+  position: relative;
+  align-content: center;
+}
+.card{
+  display: table-cell;
+  height:auto;
+  widows: auto;
+}
+
+.breadcrumb{
+  background-color: white;
+}
+
+/* Adding media queries to show the drop-down, and hide the navbar when the screen is smaller than 480 pixels */
+@media (max-width: 480px) {
+  .navbar li {
+    padding: 10px;
+  }
+  .box {
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+  .navbar ul {
+    visibility: hidden;
+  }
+  #nav-select {
+    visibility: visible;
+  }
+}
+
+/* For desktop: */
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+        width: 100%;
+    }
+}

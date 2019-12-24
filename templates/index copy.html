@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Visualization Project</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <li class="col-md-12 jumbotron text-center">
+        <h1>Project Homepage Template</h1>
+    </div>
+    <div>
+      <h2>Open console to see log of objects from <strong>/json</strong> path.</h2>
+        <p>There are two paths:</p>
+        <ol>
+          <li><a href = "/bill">/bill</a></li>
+          <li><a href="/yen">/yen</a></li>
+          <ul>
+            <li>Returns a list of all school names</li>
+          </ul>
+          <li><a href="/json">/json</a></li>
+          <ul>
+            <li>Returns a json object with:<li>
+               <ul>
+                 <li>school name</li>
+                 <li> In-state Tuition</li>
+                 <li> Out of State tuition</li>
+                 <li>State</li>
+                 <li>Lattitude</li>
+                 <li>Longitude</li>
+               </ul>
+          </ul>
+          <li><a href = "/metric">/metric</a></li>
+          <ul>
+            Route to render the page:
+            <a href="/metrics">Metrics.html</a>
+            <li>Returns a list of:</li>
+            <ul>
+              <li> In-state Tuition</li>
+              <li> Out of State tuition</li>
+              <li>State</li>
+            </ul>
+          </ul>
+
+          <li><a href = "/tuition">/tuition</a></li>
+          <p>d3.json(tuition).then((data) => {
+            data.forEach((item) => {
+              console.log(item)
+            });
+          });
+          </p>
+          <ul>
+            <li>Returns a list of:</li>
+            <ul>
+              <li> In-state Tuition</li>
+              <li> Out of State tuition</li>
+              <li>State</li>
+            </ul>
+          </ul>
+  
+        </ol>
+      </div>
+    </div>
+    
+
+  <!-- <script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+
+</body>
+
+</html>
