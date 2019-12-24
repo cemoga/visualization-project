@@ -413,6 +413,7 @@ d3.json(url).then((data) => {
   function updateState() {
     setBubblePlot(variableInfoSelector.value, stateSelector.value, citySelector.value)
     assignOptions(listofCities, citySelector, true, true)
+    gauge_chart(variableInfoSelector.value, stateSelector.value)
   };
 
   function updateCity() {
@@ -422,45 +423,107 @@ d3.json(url).then((data) => {
   variableInfoSelector.addEventListener('change', updateState, false),
     stateSelector.addEventListener('change', updateState, false),
     citySelector.addEventListener('change', updateCity, false);
+
+
+
+
+  ///// Fase II Gauge
+
+  function gauge_chart(chosenVariable, chosenState) {
+
+
+    var url_2 = `/metric/` + encodeURIComponent(chosenState.trim());
+    console.log("url_2: ", url_2)
+
+    d3.json(url_2).then((data) => {
+      console.log(data[0].State)
+      state = data[0].State
+      noSchools = data[0].No_Schools
+      tuitionIn = data[0].tuitionIn
+      tuitionOut = data[0].tuitionOut
+      expenditure = data[0].expenditure
+      facSalary = data[0].facSalary
+      tuiRevenue = data[0].tuiRevenue
+
+
+      switch (chosenVariable) {
+        case "Tuition in State":
+          redTo = 30000
+          redFrom = redTo * 6 / 8
+          yellowFrom = redTo * 5 / 8
+          yellowTo = redTo * 6 / 8
+          stateAvg = tuitionIn
+          break;
+        case "Tuition Out of State":
+          redTo = 35000
+          redFrom = redTo * 6 / 8
+          yellowFrom = redTo * 5 / 8
+          yellowTo = redTo * 6 / 8
+          stateAvg = tuitionOut
+          break;
+        case "Expenditure per Student":
+          redTo = 20000
+          redFrom = redTo * 6 / 8
+          yellowFrom = redTo * 5 / 8
+          yellowTo = redTo * 6 / 8
+          stateAvg = expenditure
+          break;
+        case "Faculty Salary":
+          redTo = 12000
+          redFrom = redTo * 6 / 8
+          yellowFrom = redTo * 5 / 8
+          yellowTo = redTo * 6 / 8
+          stateAvg = facSalary
+          break;
+        case "Tuition Revenue per Student":
+          redTo = 25000
+          redFrom = redTo * 6 / 8
+          yellowFrom = redTo * 5 / 8
+          yellowTo = redTo * 6 / 8
+          stateAvg = tuiRevenue
+          break;
+      };
+
+      console.log("stateAvg", stateAvg)
+
+      google.charts.load('current', { 'packages': ['gauge'] });
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Country', 80],
+          ['State', stateAvg],
+          ['City', 68]
+        ]);
+
+        var options = {
+          width: 400, height: 220,
+          redFrom: redFrom, redTo: redTo,
+          yellowFrom: yellowFrom, yellowTo: yellowTo,
+          max: redTo,
+          minorTicks: 5
+        };
+
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+
+        // setInterval(function () {
+        //   data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+        //   chart.draw(data, options);
+        // }, 13000);
+        // setInterval(function () {
+        //   data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
+        //   chart.draw(data, options);
+        // }, 5000);
+        // setInterval(function () {
+        //   data.setValue(2, 1, 60 + Math.round(20 * Math.random()));
+        //   chart.draw(data, options);
+        // }, 26000);
+      }
+    })
+  }
+
 });
-
-
-
-
-
-google.charts.load('current', {'packages':['gauge']});
-google.charts.setOnLoadCallback(drawChart);
-
-function drawChart() {
-
-  var data = google.visualization.arrayToDataTable([
-    ['Label', 'Value'],
-    ['Country', 80],
-    ['State', 55],
-    ['City', 68]
-  ]);
-
-  var options = {
-    width: 400, height: 120,
-    redFrom: 90, redTo: 100,
-    yellowFrom:75, yellowTo: 90,
-    minorTicks: 5
-  };
-
-  var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
-
-  chart.draw(data, options);
-
-  setInterval(function() {
-    data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
-    chart.draw(data, options);
-  }, 13000);
-  setInterval(function() {
-    data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
-    chart.draw(data, options);
-  }, 5000);
-  setInterval(function() {
-    data.setValue(2, 1, 60 + Math.round(20 * Math.random()));
-    chart.draw(data, options);
-  }, 26000);
-}
