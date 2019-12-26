@@ -1,13 +1,15 @@
- body {
-	margin: 0;
-	background:whie;
+body {
+	margin-bottom: 100px;
+	background:white;
 	font-family: "effra";
-	font-weight: 300;
+  font-weight: 300;
+  position: relative;
 }
 
 header {
   background:  #2B3E70;
   padding: 10px;
+  width: 100%;
 }
 
 header::after {
@@ -15,8 +17,10 @@ header::after {
   display: table;
   clear: both;
 }
-.metric{
+.viz{
   padding-left: 30px;
+  padding-right: 30px;
+  margin-bottom: 10px;
 }
 .heading{
   text-align: left;
@@ -74,23 +78,18 @@ header::after {
 }
 #jumbo {
   background-color: #2B3E70;
-  float: left;
   padding: 10px 45px;
   border-radius: 5px;
   margin-bottom: 10px;
-  text-decoration: none;
-  color:black;
 }
-.logo{
-  color:#E8E8E7;
-  font-family: effra;
-}
-#logo{
+#jumbo h1 a{
+  color:white;
   text-decoration: none;
 }
 
 #navigation_panel{
   background-color: #007CBD;
+  margin-right: 0px;
 }
 #navigation_panel nav {
   float: right;
@@ -152,6 +151,9 @@ nav a:hover::before {
   margin: 0 auto;
   max-width: 100%;
 }
+.container-fluid{
+  margin: 0 auto;
+}
 
 .box{
   background: white;
@@ -170,8 +172,11 @@ nav a:hover::before {
 
 }
 .footer{
-  position:relative;
-  margin-top: 2rem;
+  position:fixed;
+  overflow: hidden;
+  bottom: 0;
+  width: 100%;
+  margin-top: 200 auto;
   box-sizing: border-box;
   display: block;
   border-top: 15 px solid #007CBD;
@@ -200,13 +205,17 @@ nav a:hover::before {
 #card {
   display: table;
   padding-right: 20px;
-  position: relative;
+  position: 10;
   align-content: center;
 }
 .card{
   display: table-cell;
   height:auto;
   widows: auto;
+}
+.card_num{
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .breadcrumb{

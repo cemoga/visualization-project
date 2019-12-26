@@ -21,7 +21,7 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','') or f"postgres://postgres:postgres@localhost:5432/education_db"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','') or f"postgres://postgres:7718bill@localhost:5432/education_db"
 db = SQLAlchemy(app)
 
 # reflect an existing database into a new model
@@ -42,7 +42,6 @@ institutional_characteristics_level = Base.classes.institutional_characteristics
 @app.route("/")
 def index():
     """Return the homepage."""
-    "<h1>Check to make sure this works</h1>"
     return render_template("index.html")
 
 @app.route("/json")
@@ -197,7 +196,7 @@ def metric_city(state,city):
 
 @app.route("/tuition")
 def tuition():
-    """Return a dictionary of tuitions."""
+    """Return a dictionary of tuitions grouped by state."""
 
     qry = db.session.query(basic.state,func.round(func.avg(metrics.tuition_in_state)),func.round(func.avg(metrics.tuition_out_of_state))).filter(basic.id==metrics.id)
     qry = qry.group_by(basic.state) 
@@ -211,7 +210,6 @@ def tuition():
         json["tuitionOut"] = tuition_OS
         tuition.append(json)
 
-    # Return a list of the column names (sample names)
     return jsonify(tuition)
 
     
@@ -238,8 +236,19 @@ def yen():
         json["spend_fte"] = spend_fte
         yen.append(json)
 
-    # Return a list of the column names (sample names)
     return jsonify(yen)
+
+@app.route("/counts", methods = ["GET"])
+def counts():
+    """Return number of distinct states/provinces."""
+    dist = db.session.query(basic.state).distinct().count()
+  
+    counts = []
+
+    json = {}
+    json["count"] = dist
+    counts.append(json)
+    return jsonify(counts)
 
 
 @app.route('/<string:page_name>/')
