@@ -128,6 +128,33 @@ def metric_state(state):
     # Return a list of the column names (sample names)
     return jsonify(state_data)
 
+@app.route("/metric/country")
+def metric_country():
+    """Return a dictionary of tuitions."""
+
+    qry = db.session.query(
+        func.count(basic.state), 
+        func.round(func.avg(metrics.tuition_in_state)),
+        func.round(func.avg(metrics.tuition_out_of_state)),
+        func.round(func.avg(metrics.instructional_expenditure_per_fte)),
+        func.round(func.avg(metrics.faculty_salary)),
+        func.round(func.avg(metrics.tuition_revenue_per_fte)),
+        ).filter(basic.id==metrics.id)
+
+    country_data = []
+    for count,tuition_IS,tuition_OS, expenditure, faculty_Sal, revenue in qry:      
+        
+        json = {}
+        json["No_Schools"] = count
+        json["tuitionIn"] = tuition_IS
+        json["tuitionOut"] = tuition_OS
+        json["expenditure"] = expenditure
+        json["facSalary"] = faculty_Sal
+        json["tuiRevenue"] = revenue
+        country_data.append(json)
+
+    # Return a list of the column names (sample names)
+    return jsonify(country_data)
 
 @app.route("/tuition")
 def tuition():
