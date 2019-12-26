@@ -96,9 +96,38 @@ def metric():
     return jsonify(cesars_page)
 
 
+@app.route("/metric/country")
+def metric_country():
+    """It includes Country Averages"""
+
+    qry = db.session.query(
+        func.count(basic.state), 
+        func.round(func.avg(metrics.tuition_in_state)),
+        func.round(func.avg(metrics.tuition_out_of_state)),
+        func.round(func.avg(metrics.instructional_expenditure_per_fte)),
+        func.round(func.avg(metrics.faculty_salary)),
+        func.round(func.avg(metrics.tuition_revenue_per_fte)),
+        ).filter(basic.id==metrics.id)
+
+    country_data = []
+    for count,tuition_IS,tuition_OS, expenditure, faculty_Sal, revenue in qry:      
+        
+        json = {}
+        json["No_Schools"] = count
+        json["tuitionIn"] = tuition_IS
+        json["tuitionOut"] = tuition_OS
+        json["expenditure"] = expenditure
+        json["facSalary"] = faculty_Sal
+        json["tuiRevenue"] = revenue
+        country_data.append(json)
+
+    # Return a list of the column names (sample names)
+    return jsonify(country_data)
+
+
 @app.route("/metric/<state>")
 def metric_state(state):
-    """Return a dictionary of tuitions."""
+    """It includes state averages"""
 
     qry = db.session.query(
         state_fips.description,
@@ -128,33 +157,43 @@ def metric_state(state):
     # Return a list of the column names (sample names)
     return jsonify(state_data)
 
-@app.route("/metric/country")
-def metric_country():
-    """Return a dictionary of tuitions."""
+@app.route("/metric/<state>/<city>")
+def metric_city(state,city):
+    """It includes state averages"""
 
     qry = db.session.query(
+        state_fips.description,
+        basic.city,
         func.count(basic.state), 
         func.round(func.avg(metrics.tuition_in_state)),
         func.round(func.avg(metrics.tuition_out_of_state)),
         func.round(func.avg(metrics.instructional_expenditure_per_fte)),
         func.round(func.avg(metrics.faculty_salary)),
         func.round(func.avg(metrics.tuition_revenue_per_fte)),
-        ).filter(basic.id==metrics.id)
+        ).filter(basic.id==metrics.id).filter(state_fips.code==basic.state_fips)
+    qry = qry.group_by(state_fips.description) 
+    qry = qry.group_by(basic.city) 
+    qry = qry.filter(state_fips.description == state)
+    qry = qry.filter(basic.city == city)
 
-    country_data = []
-    for count,tuition_IS,tuition_OS, expenditure, faculty_Sal, revenue in qry:      
+    city_data = []
+    for state,city,count,tuition_IS,tuition_OS, expenditure, faculty_Sal, revenue in qry:      
         
         json = {}
+        json["State"] = state
+        json["City"] = city
         json["No_Schools"] = count
         json["tuitionIn"] = tuition_IS
         json["tuitionOut"] = tuition_OS
         json["expenditure"] = expenditure
         json["facSalary"] = faculty_Sal
         json["tuiRevenue"] = revenue
-        country_data.append(json)
+        city_data.append(json)
 
     # Return a list of the column names (sample names)
-    return jsonify(country_data)
+    return jsonify(city_data)
+
+
 
 @app.route("/tuition")
 def tuition():

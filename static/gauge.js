@@ -10,6 +10,7 @@ var schoolName = [],
   expenditurePerStudent = [],
   tuitionRevenuePerStudent = [];
 
+
 var url = `/metric`;
 // console.log("url: ", url)
 
@@ -28,10 +29,6 @@ d3.json(url).then((data) => {
     expenditurePerStudent.push(item.expenditurePerStudent)
     tuitionRevenuePerStudent.push(item.tuitionRevenuePerStudent)
   });
-
-
-
-
 
   // // Function for thousands formatting
   // function thousands_separators(num) {
@@ -413,11 +410,12 @@ d3.json(url).then((data) => {
   function updateState() {
     setBubblePlot(variableInfoSelector.value, stateSelector.value, citySelector.value)
     assignOptions(listofCities, citySelector, true, true)
-    gauge_chart(variableInfoSelector.value, stateSelector.value)
+    gauge_chart(variableInfoSelector.value, stateSelector.value, citySelector.value)
   };
 
   function updateCity() {
     setBubblePlot(variableInfoSelector.value, stateSelector.value, citySelector.value)
+    gauge_chart(variableInfoSelector.value, stateSelector.value, citySelector.value)
   }
 
   variableInfoSelector.addEventListener('change', updateState, false),
@@ -427,103 +425,156 @@ d3.json(url).then((data) => {
 
 
 
+
   ///// Fase II Gauge
 
-  function gauge_chart(chosenVariable, chosenState) {
+  // Variables by Default
 
+  gauge_chart("Expenditure per Student", 'All', "All")
 
-    var url_2 = `/metric/` + encodeURIComponent(chosenState.trim());
-    console.log("url_2: ", url_2)
+  function gauge_chart(chosenVariable, chosenState, chosenCity) {
 
+    var url_2 = `/metric/country`
+    var url_3 = `/metric/` + encodeURIComponent(chosenState.trim());
+    var url_4 = `/metric/` + encodeURIComponent(chosenState.trim()) + `/` + encodeURIComponent(chosenCity.trim());
+
+    label_2 = 'State'
+    label_3 = 'City'
+
+    if (chosenState == 'All') {
+      label_2 = 'Country'
+      url_3 = url_2
+      label_3 = 'Country'
+      url_4 = url_2
+    } else if (chosenCity == 'All') {
+      label_2 = 'State'
+      label_3 = 'State'
+      url_4 = url_3
+    }
+
+    // console.log("url_2: ", url_2)
     d3.json(url_2).then((data) => {
-      console.log(data[0].State)
-      state = data[0].State
-      noSchools = data[0].No_Schools
-      tuitionIn = data[0].tuitionIn
-      tuitionOut = data[0].tuitionOut
-      expenditure = data[0].expenditure
-      facSalary = data[0].facSalary
-      tuiRevenue = data[0].tuiRevenue
+      state_country = data[0].State
+      noSchools_country = data[0].No_Schools
+      tuitionIn_country = data[0].tuitionIn
+      tuitionOut_country = data[0].tuitionOut
+      expenditure_country = data[0].expenditure
+      facSalary_country = data[0].facSalary
+      tuiRevenue_country = data[0].tuiRevenue
+
+      d3.json(url_3).then((data) => {
+        // console.log(data[0].State)
+        state_st = data[0].State
+        noSchools_st = data[0].No_Schools
+        tuitionIn_st = data[0].tuitionIn
+        tuitionOut_st = data[0].tuitionOut
+        expenditure_st = data[0].expenditure
+        facSalary_st = data[0].facSalary
+        tuiRevenue_st = data[0].tuiRevenue
+
+        // console.log(url_4)
+        d3.json(url_4).then((data) => {
+          // console.log(data[0].State)
+          state_city = data[0].State
+          noSchools_city = data[0].No_Schools
+          tuitionIn_city = data[0].tuitionIn
+          tuitionOut_city = data[0].tuitionOut
+          expenditure_city = data[0].expenditure
+          facSalary_city = data[0].facSalary
+          tuiRevenue_city = data[0].tuiRevenue
 
 
-      switch (chosenVariable) {
-        case "Tuition in State":
-          redTo = 30000
-          redFrom = redTo * 6 / 8
-          yellowFrom = redTo * 5 / 8
-          yellowTo = redTo * 6 / 8
-          stateAvg = tuitionIn
-          break;
-        case "Tuition Out of State":
-          redTo = 35000
-          redFrom = redTo * 6 / 8
-          yellowFrom = redTo * 5 / 8
-          yellowTo = redTo * 6 / 8
-          stateAvg = tuitionOut
-          break;
-        case "Expenditure per Student":
-          redTo = 20000
-          redFrom = redTo * 6 / 8
-          yellowFrom = redTo * 5 / 8
-          yellowTo = redTo * 6 / 8
-          stateAvg = expenditure
-          break;
-        case "Faculty Salary":
-          redTo = 12000
-          redFrom = redTo * 6 / 8
-          yellowFrom = redTo * 5 / 8
-          yellowTo = redTo * 6 / 8
-          stateAvg = facSalary
-          break;
-        case "Tuition Revenue per Student":
-          redTo = 25000
-          redFrom = redTo * 6 / 8
-          yellowFrom = redTo * 5 / 8
-          yellowTo = redTo * 6 / 8
-          stateAvg = tuiRevenue
-          break;
-      };
 
-      console.log("stateAvg", stateAvg)
+          switch (chosenVariable) {
+            case "Tuition in State":
+              redTo = 30000
+              redFrom = redTo * 6 / 8
+              yellowFrom = redTo * 5 / 8
+              yellowTo = redTo * 6 / 8
+              countryAvg = tuitionIn_country
+              stateAvg = tuitionIn_st
+              cityAvg = tuitionIn_city
+              break;
+            case "Tuition Out of State":
+              redTo = 35000
+              redFrom = redTo * 6 / 8
+              yellowFrom = redTo * 5 / 8
+              yellowTo = redTo * 6 / 8
+              countryAvg = tuitionOut_country
+              stateAvg = tuitionOut_st
+              cityAvg = tuitionOut_city
+              break;
+            case "Expenditure per Student":
+              redTo = 20000
+              redFrom = redTo * 6 / 8
+              yellowFrom = redTo * 5 / 8
+              yellowTo = redTo * 6 / 8
+              countryAvg = expenditure_country
+              stateAvg = expenditure_st
+              cityAvg = expenditure_city
+              break;
+            case "Faculty Salary":
+              redTo = 12000
+              redFrom = redTo * 6 / 8
+              yellowFrom = redTo * 5 / 8
+              yellowTo = redTo * 6 / 8
+              countryAvg = facSalary_country
+              stateAvg = facSalary_st
+              cityAvg = facSalary_city
+              break;
+            case "Tuition Revenue per Student":
+              redTo = 25000
+              redFrom = redTo * 6 / 8
+              yellowFrom = redTo * 5 / 8
+              yellowTo = redTo * 6 / 8
+              countryAvg = tuiRevenue_country
+              stateAvg = tuiRevenue_st
+              cityAvg = tuiRevenue_city
+              break;
+          };
 
-      google.charts.load('current', { 'packages': ['gauge'] });
-      google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
+          // console.log("stateAvg", stateAvg)
 
-        var data = google.visualization.arrayToDataTable([
-          ['Label', 'Value'],
-          ['Country', 80],
-          ['State', stateAvg],
-          ['City', 68]
-        ]);
+          google.charts.load('current', { 'packages': ['gauge'] });
+          google.charts.setOnLoadCallback(drawChart);
 
-        var options = {
-          width: 400, height: 220,
-          redFrom: redFrom, redTo: redTo,
-          yellowFrom: yellowFrom, yellowTo: yellowTo,
-          max: redTo,
-          minorTicks: 5
-        };
+          function drawChart() {
 
-        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+            var data = google.visualization.arrayToDataTable([
+              ['Label', 'Value'],
+              ['Country', countryAvg],
+              [label_2, stateAvg],
+              [label_3, cityAvg]
+            ]);
 
-        chart.draw(data, options);
+            var options = {
+              width: 400, height: 220,
+              redFrom: redFrom, redTo: redTo,
+              yellowFrom: yellowFrom, yellowTo: yellowTo,
+              max: redTo,
+              minorTicks: 5
+            };
 
-        // setInterval(function () {
-        //   data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
-        //   chart.draw(data, options);
-        // }, 13000);
-        // setInterval(function () {
-        //   data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
-        //   chart.draw(data, options);
-        // }, 5000);
-        // setInterval(function () {
-        //   data.setValue(2, 1, 60 + Math.round(20 * Math.random()));
-        //   chart.draw(data, options);
-        // }, 26000);
-      }
+            var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+            chart.draw(data, options);
+
+            // setInterval(function () {
+            //   data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+            //   chart.draw(data, options);
+            // }, 13000);
+            // setInterval(function () {
+            //   data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
+            //   chart.draw(data, options);
+            // }, 5000);
+            // setInterval(function () {
+            //   data.setValue(2, 1, 60 + Math.round(20 * Math.random()));
+            //   chart.draw(data, options);
+            // }, 26000);
+          }
+        })
+      })
     })
   }
-
 });
