@@ -10,6 +10,7 @@ var schoolName = [],
   expenditurePerStudent = [],
   tuitionRevenuePerStudent = [];
 
+
 var url = `/metric`;
 // console.log("url: ", url)
 
@@ -28,10 +29,6 @@ d3.json(url).then((data) => {
     expenditurePerStudent.push(item.expenditurePerStudent)
     tuitionRevenuePerStudent.push(item.tuitionRevenuePerStudent)
   });
-
-
-
-
 
   // // Function for thousands formatting
   // function thousands_separators(num) {
@@ -68,8 +65,6 @@ d3.json(url).then((data) => {
     }
   }
 
-
-
   // Function to get the data of a specific State or City
   function getStateData(chosenVariable, chosenState, chosenCity) {
 
@@ -95,19 +90,16 @@ d3.json(url).then((data) => {
       currentTuitionOut = tuitionIn[i] // 4. Placeholder for the loop - "In-State Tuition" - Actual Value in $
 
       currentCity = schoolCity[i]; // 5. Stores the list of the cities for the chosen State
-
-    
-
       // 6. Information for the hoover text
       var currentText = "<b> Name: " + schoolName[i] + "</b>"
         + "<br><b> City: </b>" + schoolCity[i]
         + "<br><b> State: </b>" + schoolState[i]
         + "<br><b> Geolocation: </b>(" + schoolLat[i] + "," + schoolLong[i] + ")"
-        + "<br><b> Out of State Tuition: </b>"+ "$"+tuitionOut[i]
-        + "<br><b> Tuition in State: </b>"+ "$"+tuitionIn[i]
-        + "<br><b> Expenditure per Student: </b>" + "$"+expenditurePerStudent[i]
-        + "<br><b> Tuition Revenue per Student: </b>" + "$"+tuitionRevenuePerStudent[i];
-      currentLat = schoolLat[i]; // 7. Placeholder for the loop - Latitude"
+        + "<br><b> Out of State Tuition: </b>" + "$" + tuitionOut[i]
+        + "<br><b> Tuition in State: </b>" + "$" + tuitionIn[i]
+        + "<br><b> Expenditure per Student: </b>" + "$" + expenditurePerStudent[i]
+        + "<br><b> Tuition Revenue per Student: </b>" + "$" + tuitionRevenuePerStudent[i];
+      currentLat = schoolLat[i]; // 7. Placeholder for the loop - Latitude
       currentLong = schoolLong[i]; // 8. Placeholder for the loop - Longitude
 
       currentExpen = expenditurePerStudent[i] / scaleExp; // B. 10. Placeholder for the loop - "Expendiure per Student - Marker Size
@@ -176,6 +168,10 @@ d3.json(url).then((data) => {
 
   // Function that creates the plots
   function setBubblePlot(chosenVariable, chosenState, chosenCity) {
+
+    document.querySelector('.maptitle').innerHTML = "<h3><b>" + chosenVariable + " Weights" + "</b></h3>"
+    document.querySelector('.maptext').innerHTML = "<h5><b>State: </b>" + chosenState + " - <b> City: </b>" + chosenCity + "</h5>"
+
     // Calls the function that brings the data depending on the user selection
     getStateData(chosenVariable, chosenState, chosenCity);
     // Plotly setup for the map
@@ -197,10 +193,21 @@ d3.json(url).then((data) => {
 
     // Layout for the map
     var layout_map = {
-      title: chosenVariable,
+      // title: chosenVariable,
+      title: "United States - State View",
       font: {
-        family: 'Droid Serif, serif',
-        size: 24
+        family: 'Arial, Helvetica, sans-serif',
+        size: 20
+      },
+      autosize: false,
+      width: 900,
+      // height: 500,
+      margin: {
+        l: 250,
+        r: 0,
+        b: 0,
+        t: 0,
+        pad: 4
       },
       showlegend: false,
       geo: {
@@ -226,155 +233,6 @@ d3.json(url).then((data) => {
 
     // Plot Map
     Plotly.newPlot('plotdivmap', data_map, layout_map, { responsive: true })
-
-    // Plotly setup for the Gauge
-
-    function averageIfValue(array) {
-      var sum = 0,
-        count = 0;
-      for (var i = 0; i < array.length; i++) {
-        if (array[i] !== null && array[i] !== '') {
-          sum += parseFloat(array[i]);
-          count += 1
-        }
-      }
-      return sum / (count)
-    }
-
-    var data_gauge = [
-      {
-        type: "indicator",
-        mode: "gauge+number",
-        gauge: {
-          shape: "bullet", axis: { range: [null, 20000] },
-          steps: [
-            { range: [0, 10000], color: "white" },
-            { range: [10000, 20000], color: "lightgray" }
-          ],
-          threshold: {
-            line: { color: "red", width: 4 },
-            thickness: 0.75,
-            value: averageIfValue(citySize) * scalevar
-          }
-        },
-        value: averageIfValue(citySize) * scalevar,
-        domain: { x: [0, 1], y: [0, 0.5] },
-        title: {
-          text: "State: " + chosenState + "<br>" + "City: " + chosenCity,
-          font: {
-            family: 'Droid Serif, serif',
-            size: 15
-          }
-        },
-      }
-    ];
-
-    // Layout for the map
-    // var layout_gauge = // { width: 700, height: 220 };
-
-    var layout_gauge = {
-      title: chosenVariable + "<br>" + "(Average)",
-      autosize: false,
-      width: 700,
-      height: 100,
-      margin: {
-        l: 175,
-        r: 0,
-        b: 20,
-        t: 50,
-        pad: 5
-      },
-      yanchor: 'middle',
-      xanchor: 'middle'
-
-    }
-
-
-
-
-    // Plot Gauge
-    Plotly.newPlot('plotdivgauge', data_gauge, layout_gauge, { responsive: true });
-
-    // Plotly setup for the Table
-    var trace1_table = {
-      type: 'scatter',
-      x: tuitionIn,
-      y: listofStates,
-      mode: 'markers',
-      name: 'Tuition In State',
-      marker: {
-        color: 'rgba(156, 165, 196, 0.95)',
-        line: {
-          color: 'rgba(156, 165, 196, 1.0)',
-          width: 1,
-        },
-        symbol: 'circle',
-        size: 16
-      }
-    };
-
-    var trace2_table = {
-      x: tuitionOut,
-      y: listofStates,
-      mode: 'markers',
-      name: 'Tuition Out of State',
-      marker: {
-        color: 'rgba(204, 204, 204, 0.95)',
-        line: {
-          color: 'rgba(217, 217, 217, 1.0)',
-          width: 1,
-        },
-        symbol: 'circle',
-        size: 16
-      }
-    };
-
-    var data = [trace1_table, trace2_table];
-
-    // Layout for the Table
-    var layout = {
-      title: 'Metrics for State',
-      xaxis: {
-        showgrid: false,
-        showline: true,
-        linecolor: 'rgb(102, 102, 102)',
-        titlefont: {
-          font: {
-            color: 'rgb(204, 204, 204)'
-          }
-        },
-        tickfont: {
-          font: {
-            color: 'rgb(102, 102, 102)'
-          }
-        },
-        autotick: false,
-        dtick: 10,
-        ticks: 'outside',
-        tickcolor: 'rgb(102, 102, 102)'
-      },
-      margin: {
-        l: 140,
-        r: 40,
-        b: 50,
-        t: 80
-      },
-      legend: {
-        font: {
-          size: 10,
-        },
-        yanchor: 'middle',
-        xanchor: 'right'
-      },
-      width: 600,
-      height: 600,
-      paper_bgcolor: 'rgb(254, 247, 234)',
-      plot_bgcolor: 'rgb(254, 247, 234)',
-      hovermode: 'closest'
-    };
-
-    // Plot Table
-    Plotly.newPlot('plotdivtable', data, layout);
 
   };
 
@@ -416,15 +274,158 @@ d3.json(url).then((data) => {
   function updateState() {
     setBubblePlot(variableInfoSelector.value, stateSelector.value, citySelector.value)
     assignOptions(listofCities, citySelector, true, true)
+    gauge_chart(variableInfoSelector.value, stateSelector.value, citySelector.value)
   };
 
   function updateCity() {
     setBubblePlot(variableInfoSelector.value, stateSelector.value, citySelector.value)
+    gauge_chart(variableInfoSelector.value, stateSelector.value, citySelector.value)
   }
 
   variableInfoSelector.addEventListener('change', updateState, false),
     stateSelector.addEventListener('change', updateState, false),
     citySelector.addEventListener('change', updateCity, false);
+
+
+  ///// Fase II Gauge
+
+  // Variables by Default
+
+  gauge_chart("Expenditure per Student", 'All', "All")
+
+  function gauge_chart(chosenVariable, chosenState, chosenCity) {
+
+    document.querySelector('.gaugetitle').innerHTML = "<h3><b>" + chosenVariable + " Averages" + "</b></h3>"
+    document.querySelector('.gaugetext').innerHTML = "<h5><b>State: </b>" + chosenState + " - <b> City: </b>" + chosenCity + "</h5>"
+
+    var url_2 = `/metric/country`
+    var url_3 = `/metric/` + encodeURIComponent(chosenState.trim());
+    var url_4 = `/metric/` + encodeURIComponent(chosenState.trim()) + `/` + encodeURIComponent(chosenCity.trim());
+
+    label_2 = 'State'
+    label_3 = 'City'
+
+    if (chosenState == 'All') {
+      label_2 = 'Country'
+      url_3 = url_2
+      label_3 = 'Country'
+      url_4 = url_2
+    } else if (chosenCity == 'All') {
+      label_2 = 'State'
+      label_3 = 'State'
+      url_4 = url_3
+    }
+
+    // console.log("url_2: ", url_2)
+    d3.json(url_2).then((data) => {
+      state_country = data[0].State
+      noSchools_country = data[0].No_Schools
+      tuitionIn_country = data[0].tuitionIn
+      tuitionOut_country = data[0].tuitionOut
+      expenditure_country = data[0].expenditure
+      facSalary_country = data[0].facSalary
+      tuiRevenue_country = data[0].tuiRevenue
+
+      d3.json(url_3).then((data) => {
+        // console.log(data[0].State)
+        state_st = data[0].State
+        noSchools_st = data[0].No_Schools
+        tuitionIn_st = data[0].tuitionIn
+        tuitionOut_st = data[0].tuitionOut
+        expenditure_st = data[0].expenditure
+        facSalary_st = data[0].facSalary
+        tuiRevenue_st = data[0].tuiRevenue
+
+        // console.log(url_4)
+        d3.json(url_4).then((data) => {
+          // console.log(data[0].State)
+          state_city = data[0].State
+          noSchools_city = data[0].No_Schools
+          tuitionIn_city = data[0].tuitionIn
+          tuitionOut_city = data[0].tuitionOut
+          expenditure_city = data[0].expenditure
+          facSalary_city = data[0].facSalary
+          tuiRevenue_city = data[0].tuiRevenue
+
+
+
+          switch (chosenVariable) {
+            case "Tuition in State":
+              redTo = 30000
+              redFrom = redTo * 6 / 8
+              yellowFrom = redTo * 5 / 8
+              yellowTo = redTo * 6 / 8
+              countryAvg = tuitionIn_country
+              stateAvg = tuitionIn_st
+              cityAvg = tuitionIn_city
+              break;
+            case "Tuition Out of State":
+              redTo = 35000
+              redFrom = redTo * 6 / 8
+              yellowFrom = redTo * 5 / 8
+              yellowTo = redTo * 6 / 8
+              countryAvg = tuitionOut_country
+              stateAvg = tuitionOut_st
+              cityAvg = tuitionOut_city
+              break;
+            case "Expenditure per Student":
+              redTo = 20000
+              redFrom = redTo * 6 / 8
+              yellowFrom = redTo * 5 / 8
+              yellowTo = redTo * 6 / 8
+              countryAvg = expenditure_country
+              stateAvg = expenditure_st
+              cityAvg = expenditure_city
+              break;
+            case "Faculty Salary":
+              redTo = 12000
+              redFrom = redTo * 6 / 8
+              yellowFrom = redTo * 5 / 8
+              yellowTo = redTo * 6 / 8
+              countryAvg = facSalary_country
+              stateAvg = facSalary_st
+              cityAvg = facSalary_city
+              break;
+            case "Tuition Revenue per Student":
+              redTo = 25000
+              redFrom = redTo * 6 / 8
+              yellowFrom = redTo * 5 / 8
+              yellowTo = redTo * 6 / 8
+              countryAvg = tuiRevenue_country
+              stateAvg = tuiRevenue_st
+              cityAvg = tuiRevenue_city
+              break;
+          };
+
+
+          // console.log("stateAvg", stateAvg)
+
+          google.charts.load('current', { 'packages': ['gauge'] });
+          google.charts.setOnLoadCallback(drawChart);
+
+          function drawChart() {
+
+            var data = google.visualization.arrayToDataTable([
+              ['Label', 'Value'],
+              ['Country', countryAvg],
+              [label_2, stateAvg],
+              [label_3, cityAvg]
+            ]);
+
+            var options = {
+              width: 400, height: 220,
+              redFrom: redFrom, redTo: redTo,
+              yellowFrom: yellowFrom, yellowTo: yellowTo,
+              max: redTo,
+              minorTicks: 5
+            };
+
+            var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+            chart.draw(data, options);
+          }
+        })
+      })
+    })
+  }
 });
-
-

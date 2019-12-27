@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="shortcut icon" href="#" />
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='CSS/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <title>College Database</title>
+
+</head>
+
+
+<header>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12 jumbotron text-center" id="jumbo">
+                <h1><a href="/" title="Home" id="logo">
+                        <h1 class="logo">College Database</h1>
+                    </a></h1>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="row" id="navigation_panel">
+    <div class="col-md-3"></div>
+    <div class="col-md-9">
+        <nav>
+            <ul>
+                <li><a href="/metrics">College Financial Info</a></li>
+                <li><a href="/school_state">School by State</a></li>
+                <li><a href="/sliding_Scale">Map</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Metrics</li>
+
+    </ol>
+</nav>
+<br>
+
+<body>
+    <div class="viz" style="padding-left:30px">
+        <div>
+            <div class="plot" id="plotdivmap"></div>
+            <div class="control-row" style="text-align: center;">
+                <b> Variable:</b> <select class="variabledata"></select>
+                <b> State:</b> <select class="statedata"></select>
+                <b> City:</b> <select class="citydata"></select>
+            </div>
+            <hr>
+            <div class="plot" id="plotdivgauge"
+                style="margin-top: 0; padding: 10%; padding-top: 0%; overflow: visible;"></div>
+            <hr>
+            <div class="titlemetadata">
+                <h3>Metadata</h3>
+            </div>
+            <div class="textmap">text</div>
+            <div class="textsource">
+                <p><b>Source of data: </b></p><a href="https://collegescorecard.ed.gov/data/documentation/"
+                    target="_blank">US Department of Eduction
+                    - API</a>
+            </div>
+        </div>
+
+        <div class="plot" id="plotdivtable"></div>
+    </div>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+    <script src="../static/metrics.js"></script>
+
+</body>
+
+<div class="footer">
+    <div class="row">
+        <div class="col-md-12">
+            <footer>
+                <section>
+                    <div class="footer_content">
+                        <nav class="unstyled">
+                            <ul>
+                                <li><a href="https://github.com/cemoga/visualization-project">GitHub</a></li>
+                                <li><a href="#"> privacy Statement</a></li>
+                                <li><a href="#">Terms of Use</a></li>
+                                <li><a href="#">Site map</a></li>
+                            </ul>
+                        </nav>
+                        <p>Last updated 03Jan2020</p>
+                        <p>© 2019 College Database</p>
+                    </div>
+                </section>
+            </footer>
+        </div>
+    </div>
+</div>
+
+</html>

@@ -10,7 +10,6 @@ var schoolName = [],
   expenditurePerStudent = [],
   tuitionRevenuePerStudent = [];
 
-
 var url = `/metric`;
 // console.log("url: ", url)
 
@@ -29,6 +28,10 @@ d3.json(url).then((data) => {
     expenditurePerStudent.push(item.expenditurePerStudent)
     tuitionRevenuePerStudent.push(item.tuitionRevenuePerStudent)
   });
+
+
+
+
 
   // // Function for thousands formatting
   // function thousands_separators(num) {
@@ -92,16 +95,19 @@ d3.json(url).then((data) => {
       currentTuitionOut = tuitionIn[i] // 4. Placeholder for the loop - "In-State Tuition" - Actual Value in $
 
       currentCity = schoolCity[i]; // 5. Stores the list of the cities for the chosen State
+
+    
+
       // 6. Information for the hoover text
       var currentText = "<b> Name: " + schoolName[i] + "</b>"
         + "<br><b> City: </b>" + schoolCity[i]
         + "<br><b> State: </b>" + schoolState[i]
         + "<br><b> Geolocation: </b>(" + schoolLat[i] + "," + schoolLong[i] + ")"
-        + "<br><b> Out of State Tuition: </b>" + "$" + tuitionOut[i]
-        + "<br><b> Tuition in State: </b>" + "$" + tuitionIn[i]
-        + "<br><b> Expenditure per Student: </b>" + "$" + expenditurePerStudent[i]
-        + "<br><b> Tuition Revenue per Student: </b>" + "$" + tuitionRevenuePerStudent[i];
-      currentLat = schoolLat[i]; // 7. Placeholder for the loop - Latitude
+        + "<br><b> Out of State Tuition: </b>"+ "$"+tuitionOut[i]
+        + "<br><b> Tuition in State: </b>"+ "$"+tuitionIn[i]
+        + "<br><b> Expenditure per Student: </b>" + "$"+expenditurePerStudent[i]
+        + "<br><b> Tuition Revenue per Student: </b>" + "$"+tuitionRevenuePerStudent[i];
+      currentLat = schoolLat[i]; // 7. Placeholder for the loop - Latitude"
       currentLong = schoolLong[i]; // 8. Placeholder for the loop - Longitude
 
       currentExpen = expenditurePerStudent[i] / scaleExp; // B. 10. Placeholder for the loop - "Expendiure per Student - Marker Size
@@ -410,171 +416,15 @@ d3.json(url).then((data) => {
   function updateState() {
     setBubblePlot(variableInfoSelector.value, stateSelector.value, citySelector.value)
     assignOptions(listofCities, citySelector, true, true)
-    gauge_chart(variableInfoSelector.value, stateSelector.value, citySelector.value)
   };
 
   function updateCity() {
     setBubblePlot(variableInfoSelector.value, stateSelector.value, citySelector.value)
-    gauge_chart(variableInfoSelector.value, stateSelector.value, citySelector.value)
   }
 
   variableInfoSelector.addEventListener('change', updateState, false),
     stateSelector.addEventListener('change', updateState, false),
     citySelector.addEventListener('change', updateCity, false);
-
-
-
-
-
-  ///// Fase II Gauge
-
-  // Variables by Default
-
-  gauge_chart("Expenditure per Student", 'All', "All")
-
-  function gauge_chart(chosenVariable, chosenState, chosenCity) {
-
-    var url_2 = `/metric/country`
-    var url_3 = `/metric/` + encodeURIComponent(chosenState.trim());
-    var url_4 = `/metric/` + encodeURIComponent(chosenState.trim()) + `/` + encodeURIComponent(chosenCity.trim());
-
-    label_2 = 'State'
-    label_3 = 'City'
-
-    if (chosenState == 'All') {
-      label_2 = 'Country'
-      url_3 = url_2
-      label_3 = 'Country'
-      url_4 = url_2
-    } else if (chosenCity == 'All') {
-      label_2 = 'State'
-      label_3 = 'State'
-      url_4 = url_3
-    }
-
-    // console.log("url_2: ", url_2)
-    d3.json(url_2).then((data) => {
-      state_country = data[0].State
-      noSchools_country = data[0].No_Schools
-      tuitionIn_country = data[0].tuitionIn
-      tuitionOut_country = data[0].tuitionOut
-      expenditure_country = data[0].expenditure
-      facSalary_country = data[0].facSalary
-      tuiRevenue_country = data[0].tuiRevenue
-
-      d3.json(url_3).then((data) => {
-        // console.log(data[0].State)
-        state_st = data[0].State
-        noSchools_st = data[0].No_Schools
-        tuitionIn_st = data[0].tuitionIn
-        tuitionOut_st = data[0].tuitionOut
-        expenditure_st = data[0].expenditure
-        facSalary_st = data[0].facSalary
-        tuiRevenue_st = data[0].tuiRevenue
-
-        // console.log(url_4)
-        d3.json(url_4).then((data) => {
-          // console.log(data[0].State)
-          state_city = data[0].State
-          noSchools_city = data[0].No_Schools
-          tuitionIn_city = data[0].tuitionIn
-          tuitionOut_city = data[0].tuitionOut
-          expenditure_city = data[0].expenditure
-          facSalary_city = data[0].facSalary
-          tuiRevenue_city = data[0].tuiRevenue
-
-
-
-          switch (chosenVariable) {
-            case "Tuition in State":
-              redTo = 30000
-              redFrom = redTo * 6 / 8
-              yellowFrom = redTo * 5 / 8
-              yellowTo = redTo * 6 / 8
-              countryAvg = tuitionIn_country
-              stateAvg = tuitionIn_st
-              cityAvg = tuitionIn_city
-              break;
-            case "Tuition Out of State":
-              redTo = 35000
-              redFrom = redTo * 6 / 8
-              yellowFrom = redTo * 5 / 8
-              yellowTo = redTo * 6 / 8
-              countryAvg = tuitionOut_country
-              stateAvg = tuitionOut_st
-              cityAvg = tuitionOut_city
-              break;
-            case "Expenditure per Student":
-              redTo = 20000
-              redFrom = redTo * 6 / 8
-              yellowFrom = redTo * 5 / 8
-              yellowTo = redTo * 6 / 8
-              countryAvg = expenditure_country
-              stateAvg = expenditure_st
-              cityAvg = expenditure_city
-              break;
-            case "Faculty Salary":
-              redTo = 12000
-              redFrom = redTo * 6 / 8
-              yellowFrom = redTo * 5 / 8
-              yellowTo = redTo * 6 / 8
-              countryAvg = facSalary_country
-              stateAvg = facSalary_st
-              cityAvg = facSalary_city
-              break;
-            case "Tuition Revenue per Student":
-              redTo = 25000
-              redFrom = redTo * 6 / 8
-              yellowFrom = redTo * 5 / 8
-              yellowTo = redTo * 6 / 8
-              countryAvg = tuiRevenue_country
-              stateAvg = tuiRevenue_st
-              cityAvg = tuiRevenue_city
-              break;
-          };
-
-
-          // console.log("stateAvg", stateAvg)
-
-          google.charts.load('current', { 'packages': ['gauge'] });
-          google.charts.setOnLoadCallback(drawChart);
-
-          function drawChart() {
-
-            var data = google.visualization.arrayToDataTable([
-              ['Label', 'Value'],
-              ['Country', countryAvg],
-              [label_2, stateAvg],
-              [label_3, cityAvg]
-            ]);
-
-            var options = {
-              width: 400, height: 220,
-              redFrom: redFrom, redTo: redTo,
-              yellowFrom: yellowFrom, yellowTo: yellowTo,
-              max: redTo,
-              minorTicks: 5
-            };
-
-            var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
-
-            chart.draw(data, options);
-
-            // setInterval(function () {
-            //   data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
-            //   chart.draw(data, options);
-            // }, 13000);
-            // setInterval(function () {
-            //   data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
-            //   chart.draw(data, options);
-            // }, 5000);
-            // setInterval(function () {
-            //   data.setValue(2, 1, 60 + Math.round(20 * Math.random()));
-            //   chart.draw(data, options);
-            // }, 26000);
-          }
-        })
-      })
-    })
-  }
 });
+
+
