@@ -301,6 +301,9 @@ d3.json(url).then((data) => {
     var url_2 = `/metric/country`
     var url_3 = `/metric/` + encodeURIComponent(chosenState.trim());
     var url_4 = `/metric/` + encodeURIComponent(chosenState.trim()) + `/` + encodeURIComponent(chosenCity.trim());
+    var url_5 = '/metric/table/country'
+    var url_6 = `/metric/table/` + encodeURIComponent(chosenState.trim());
+    var url_7 = `/metric/table/` + encodeURIComponent(chosenState.trim()) + `/` + encodeURIComponent(chosenCity.trim());
 
     label_2 = 'State'
     label_3 = 'City'
@@ -310,11 +313,23 @@ d3.json(url).then((data) => {
       url_3 = url_2
       label_3 = 'Country'
       url_4 = url_2
+      url_table = url_5
+      label_table = "State" 
     } else if (chosenCity == 'All') {
       label_2 = 'State'
       label_3 = 'State'
       url_4 = url_3
+      url_table = url_6
+      label_table = "City" 
+    } else if (chosenCity != 'All') {
+      url_table = url_7
+      label_table = "School" 
     }
+
+    document.querySelector('.tabletitle').innerHTML = "<h3><b>" + label_table + " Averages" + "</b></h3>"
+    document.querySelector('.tabletext').innerHTML = "<h5><b>State: </b>" + chosenState + " - <b> City: </b>" + chosenCity + "</h5>"
+
+
 
     // console.log("url_2: ", url_2)
     d3.json(url_2).then((data) => {
@@ -347,85 +362,128 @@ d3.json(url).then((data) => {
           facSalary_city = data[0].facSalary
           tuiRevenue_city = data[0].tuiRevenue
 
+          d3.json(url_table).then((data) => {
+          line = []
+          list_of_lines = []
+            // console.log(data)
+            data.forEach((item) => {
+              // console.log(item.Fips)
+              line = []
+              line.push(item.State)
+              line.push(item.No_Schools)
+              line.push(item.expenditure)
+              line.push(item.facSalary)
+              line.push(item.tuiRevenue)
+              line.push(item.tuitionIn)
+              line.push(item.tuitionOut)
+              list_of_lines.push(line)
+            });
 
-
-          switch (chosenVariable) {
-            case "Tuition in State":
-              redTo = 30000
-              redFrom = redTo * 6 / 8
-              yellowFrom = redTo * 5 / 8
-              yellowTo = redTo * 6 / 8
-              countryAvg = tuitionIn_country
-              stateAvg = tuitionIn_st
-              cityAvg = tuitionIn_city
-              break;
-            case "Tuition Out of State":
-              redTo = 35000
-              redFrom = redTo * 6 / 8
-              yellowFrom = redTo * 5 / 8
-              yellowTo = redTo * 6 / 8
-              countryAvg = tuitionOut_country
-              stateAvg = tuitionOut_st
-              cityAvg = tuitionOut_city
-              break;
-            case "Expenditure per Student":
-              redTo = 20000
-              redFrom = redTo * 6 / 8
-              yellowFrom = redTo * 5 / 8
-              yellowTo = redTo * 6 / 8
-              countryAvg = expenditure_country
-              stateAvg = expenditure_st
-              cityAvg = expenditure_city
-              break;
-            case "Faculty Salary":
-              redTo = 12000
-              redFrom = redTo * 6 / 8
-              yellowFrom = redTo * 5 / 8
-              yellowTo = redTo * 6 / 8
-              countryAvg = facSalary_country
-              stateAvg = facSalary_st
-              cityAvg = facSalary_city
-              break;
-            case "Tuition Revenue per Student":
-              redTo = 25000
-              redFrom = redTo * 6 / 8
-              yellowFrom = redTo * 5 / 8
-              yellowTo = redTo * 6 / 8
-              countryAvg = tuiRevenue_country
-              stateAvg = tuiRevenue_st
-              cityAvg = tuiRevenue_city
-              break;
-          };
-
-
-          // console.log("stateAvg", stateAvg)
-
-          google.charts.load('current', { 'packages': ['gauge'] });
-          google.charts.setOnLoadCallback(drawChart);
-
-          function drawChart() {
-
-            var data = google.visualization.arrayToDataTable([
-              ['Label', 'Value'],
-              ['Country', countryAvg],
-              [label_2, stateAvg],
-              [label_3, cityAvg]
-            ]);
-
-            var options = {
-              width: 400, height: 220,
-              redFrom: redFrom, redTo: redTo,
-              yellowFrom: yellowFrom, yellowTo: yellowTo,
-              max: redTo,
-              minorTicks: 5
+            switch (chosenVariable) {
+              case "Tuition in State":
+                redTo = 30000
+                redFrom = redTo * 6 / 8
+                yellowFrom = redTo * 5 / 8
+                yellowTo = redTo * 6 / 8
+                countryAvg = tuitionIn_country
+                stateAvg = tuitionIn_st
+                cityAvg = tuitionIn_city
+                break;
+              case "Tuition Out of State":
+                redTo = 35000
+                redFrom = redTo * 6 / 8
+                yellowFrom = redTo * 5 / 8
+                yellowTo = redTo * 6 / 8
+                countryAvg = tuitionOut_country
+                stateAvg = tuitionOut_st
+                cityAvg = tuitionOut_city
+                break;
+              case "Expenditure per Student":
+                redTo = 20000
+                redFrom = redTo * 6 / 8
+                yellowFrom = redTo * 5 / 8
+                yellowTo = redTo * 6 / 8
+                countryAvg = expenditure_country
+                stateAvg = expenditure_st
+                cityAvg = expenditure_city
+                break;
+              case "Faculty Salary":
+                redTo = 12000
+                redFrom = redTo * 6 / 8
+                yellowFrom = redTo * 5 / 8
+                yellowTo = redTo * 6 / 8
+                countryAvg = facSalary_country
+                stateAvg = facSalary_st
+                cityAvg = facSalary_city
+                break;
+              case "Tuition Revenue per Student":
+                redTo = 25000
+                redFrom = redTo * 6 / 8
+                yellowFrom = redTo * 5 / 8
+                yellowTo = redTo * 6 / 8
+                countryAvg = tuiRevenue_country
+                stateAvg = tuiRevenue_st
+                cityAvg = tuiRevenue_city
+                break;
             };
 
-            var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
 
-            chart.draw(data, options);
-          }
+            // console.log("stateAvg", stateAvg)
+
+            google.charts.load('current', { 'packages': ['gauge'] });
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+
+              var data = google.visualization.arrayToDataTable([
+                ['Label', 'Value'],
+                ['Country', countryAvg],
+                [label_2, stateAvg],
+                [label_3, cityAvg]
+              ]);
+
+              var options = {
+                width: 400, height: 220,
+                redFrom: redFrom, redTo: redTo,
+                yellowFrom: yellowFrom, yellowTo: yellowTo,
+                max: redTo,
+                minorTicks: 5
+              };
+
+              var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+              chart.draw(data, options);
+
+
+              google.charts.load('current', {'packages':['table']});
+              google.charts.setOnLoadCallback(drawTable);
+        
+              function drawTable() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', label_table);
+                data.addColumn('number', 'No Schools');
+                data.addColumn('number', 'Tuition in State');
+                data.addColumn('number', 'Tuition Out of State');
+                data.addColumn('number', 'Expenditure per Student');
+                data.addColumn('number', 'Faculty Salary');
+                data.addColumn('number', 'Tuition Revenue');
+          
+                data.addRows(list_of_lines);
+        
+                var table = new google.visualization.Table(document.getElementById('table_div'));
+        
+                table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+              }
+
+
+
+              
+            }
+          })
         })
       })
     })
   }
 });
+
+

@@ -2,6 +2,7 @@ import os
 
 import pandas as pd
 import numpy as np
+import json
 
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
@@ -192,7 +193,111 @@ def metric_city(state,city):
     # Return a list of the column names (sample names)
     return jsonify(city_data)
 
+@app.route("/metric/table/country")
+def table():
+    """It includes top 10 data"""
 
+    qry = db.session.query(
+        state_fips.description,
+        func.count(state_fips.description), 
+        func.round(func.avg(metrics.tuition_in_state)),
+        func.round(func.avg(metrics.tuition_out_of_state)),
+        func.round(func.avg(metrics.instructional_expenditure_per_fte)),
+        func.round(func.avg(metrics.faculty_salary)),
+        func.round(func.avg(metrics.tuition_revenue_per_fte)),
+        ).filter(basic.id==metrics.id).filter(state_fips.code==basic.state_fips)
+
+    qry = qry.group_by(state_fips.description)
+    qry = qry.order_by(state_fips.description)
+
+    table_data = []
+    for state,count,tuition_IS,tuition_OS, expenditure, faculty_Sal, revenue in qry:      
+        
+        json = {}
+        json["State"] = state
+        json["No_Schools"] = count
+        json["tuitionIn"] = tuition_IS
+        json["tuitionOut"] = tuition_OS
+        json["expenditure"] = expenditure
+        json["facSalary"] = faculty_Sal
+        json["tuiRevenue"] = revenue
+        table_data.append(json)
+
+    # Return a list of the column names (sample names)
+    json_data = jsonify(table_data)
+    return json_data
+
+@app.route("/metric/table/<state>")
+def table_state(state):
+    """It includes top 10 data"""
+
+    qry = db.session.query(
+        basic.city,
+        func.count(state_fips.description), 
+        func.round(func.avg(metrics.tuition_in_state)),
+        func.round(func.avg(metrics.tuition_out_of_state)),
+        func.round(func.avg(metrics.instructional_expenditure_per_fte)),
+        func.round(func.avg(metrics.faculty_salary)),
+        func.round(func.avg(metrics.tuition_revenue_per_fte)),
+        ).filter(basic.id==metrics.id).filter(state_fips.code==basic.state_fips)
+
+    qry = qry.filter(state_fips.description == state)
+    qry = qry.group_by(basic.city) 
+    qry = qry.order_by(basic.city)
+
+    table_data = []
+    for city,count,tuition_IS,tuition_OS, expenditure, faculty_Sal, revenue in qry:      
+        
+        json = {}
+        json["State"] = city
+        json["No_Schools"] = count
+        json["tuitionIn"] = tuition_IS
+        json["tuitionOut"] = tuition_OS
+        json["expenditure"] = expenditure
+        json["facSalary"] = faculty_Sal
+        json["tuiRevenue"] = revenue
+        table_data.append(json)
+
+    # Return a list of the column names (sample names)
+    json_data = jsonify(table_data)
+    return json_data
+
+
+@app.route("/metric/table/<state>/<city>")
+def table_city(state, city):
+    """It includes top 10 data"""
+
+    qry = db.session.query(
+        basic.name,
+        func.count(state_fips.description), 
+        func.round(func.avg(metrics.tuition_in_state)),
+        func.round(func.avg(metrics.tuition_out_of_state)),
+        func.round(func.avg(metrics.instructional_expenditure_per_fte)),
+        func.round(func.avg(metrics.faculty_salary)),
+        func.round(func.avg(metrics.tuition_revenue_per_fte)),
+        ).filter(basic.id==metrics.id).filter(state_fips.code==basic.state_fips)
+
+    qry = qry.filter(state_fips.description == state)
+    qry = qry.filter(basic.city == city)
+    qry = qry.group_by(basic.name) 
+    qry = qry.order_by(basic.name)
+
+    table_data = []
+    for name,count,tuition_IS,tuition_OS, expenditure, faculty_Sal, revenue in qry:      
+        
+        json = {}
+        json["State"] = name
+        json["No_Schools"] = count
+        json["tuitionIn"] = tuition_IS
+        json["tuitionOut"] = tuition_OS
+        json["expenditure"] = expenditure
+        json["facSalary"] = faculty_Sal
+        json["tuiRevenue"] = revenue
+        table_data.append(json)
+
+    # Return a list of the column names (sample names)
+    json_data = jsonify(table_data)
+    return json_data
 
 @app.route("/tuition")
 def tuition():
