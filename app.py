@@ -343,7 +343,28 @@ def yen():
 
     return jsonify(yen)
 
-@app.route("/counts", methods = ["GET"])
+
+@app.route("/bill", methods = ["GET"])
+def bill():
+    """Return dictionary of least to most expensive tuitions."""
+    subq = db.session.query(metrics.id, func.max(metrics.tuition_in_state).label('max')).group_by(metrics.id).subquery()
+
+    qry = db.session.query(basic.name, basic.state, basic.city, metrics.tuition_in_state).filter(basic.id == metrics.id).filter(metrics.tuition_in_state == subq.c.max).all()
+
+    school = []
+    
+    
+    for name, state, city, max_tuition in qry:
+        
+        json = {}
+        json["name"] = name
+        json["state"] = state
+        json["city"] = city
+        json["tuition"]= max_tuition
+        school.append(json)
+    return jsonify(school)
+
+@app.route("/counts")
 def counts():
     """Return number of distinct states/provinces."""
     dist = db.session.query(basic.state).distinct().count()
@@ -362,4 +383,5 @@ def render_static(page_name):
 
 
 if __name__ == "__main__":
+    app.debug = True
     app.run()
