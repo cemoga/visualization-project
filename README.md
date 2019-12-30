@@ -58,10 +58,10 @@ This folder contains files that:
 3. `3_upload_to_db_main_tables.ipynb` contains the necessary code to upload the information obtained in the API to the database.
 4. `4_upload_to_db_auxiliar_tables.ipynb` contains the necessary code to load the CSV files in the `data` folder to the database.
 5. `5_query_db.ipynb` contains the necessary code to query the database and creates test outputs to the `output` folder, in CSV, JSON, and TXT formats.
-`data` This folder contains the auxiliar information collected using the API's documentation. These additional tables are used to add descriptions to the codes extracted through the API.
-`Output` This folder contains files in CSV, JSON, and TXT formats obtained in the query to the database described in file 5.
-`queries` This folder contains files with `SQL` code used to create the database and tables described in files 1. It also contains the `SQL` code used to query the database as described in files 5.
-`CollegeScorecardDataDictionary.xlsx` This is a file downloaded the Department-of-Education API's Documentation: [College Scorecard](https://collegescorecard.ed.gov/data/documentation/ "API's Documentation Page"). This contains the metadata explanation used in the visualizations and the information used to create the CSV files int the `data` folder.
+6. `data` This folder contains the auxiliar information collected using the API's documentation. These additional tables are used to add descriptions to the codes extracted through the API.
+7. `Output` This folder contains files in CSV, JSON, and TXT formats obtained in the query to the database described in file 5.
+8. `queries` This folder contains files with `SQL` code used to create the database and tables described in files 1. It also contains the `SQL` code used to query the database as described in files 5.
+9. `CollegeScorecardDataDictionary.xlsx` This is a file downloaded the Department-of-Education API's Documentation: [College Scorecard](https://collegescorecard.ed.gov/data/documentation/ "API's Documentation Page"). This contains the metadata explanation used in the visualizations and the information used to create the CSV files int the `data` folder.
 
 ## app.py
 This file contains the `Python` code necessary to create a `Flask` development server to deploy the visualizations created using `Javascript` libraries.
