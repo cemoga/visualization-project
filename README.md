@@ -11,8 +11,8 @@
         <li>SQLAlchemy</li>
         <li>Flask</li>
         <li>Flask_SQLAlchemy</li>
-        <li>OS</li></ul>
-    </ol>
+        <li>OS</li>
+    </ol></ul>
     <li>SQL</li>
     <li>javascript</li>
     <ul type = "none"><li>Libraries:</li> 
