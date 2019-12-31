@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='CSS/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+
+    <title>College Database</title>
+
+</head>
+
+<header>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12 jumbotron text-center" id="jumbo">
+                <h1><a href="/" title="Home" id="logo">
+                        <h1 class="logo">College Database</h1>
+                    </a></h1>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="row" id="navigation_panel">
+    <div class="col-md-3"></div>
+    <div class="col-md-9">
+        <nav>
+            <ul>
+                <li><a href="/metrics" target="_blank">College Financial Info</a></li>
+                <li><a href="/school_state" target="_blank">School by State</a></li>
+                <li><a href="/sliding_Scale" target="_blank">Map</a></li>
+            </ul>
+        </nav>
+    </div>
+
+</div>
+<br>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8" id="section_desc">
+                <div class="box main">
+                    <div class="heading">
+                        <h1>
+                            <span class="white thin"> Libraries Used in this Project</span>
+                        </h1>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-6">
+                <div class="card-columns ">
+                    <div class="card mx-auto">
+                       <img class="card-img-top" src="https://avatars3.githubusercontent.com/u/1562726?s=400&v=4" alt="D3 image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">D3</h5>
+                            <p class="card-text">D3.js is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life 
+                                using HTML, SVG, and CSS. D3’s emphasis on web standards gives you the full capabilities of modern browsers without tying 
+                                yourself to a proprietary framework, combining powerful visualization components and a data-driven 
+                                approach to DOM manipulation.</p>
+                            <a href="https://d3js.org/" target="_blank" class="btn btn-primary">D3</a>
+                        </div>
+                    </div>
+                    <div class="card mx-auto">
+                        <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/3/37/Plotly-logo-01-square.png" alt="Plotly image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Plotly</h5>
+                            <p class="card-text">Built on top of d3.js and stack.gl, Plotly.js is a high-level, declarative charting library.</p>
+                            <a href="https://plot.ly/javascript/" target="_blank" class="btn btn-primary">Plotly</a>
+                        </div>
+                    </div>
+                    <div class="card mx-auto">
+                        <img class="card-img-top" src="https://www.drupal.org/files/project-images/bootstrap-stack.png" alt="Bootstrap image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Bootstrap</h5>
+                            <p class="card-text">SBuild responsive, mobile-first projects on the web with the world’s most popular front-end component library.
+                                Bootstrap is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app 
+                                with our Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.</p>
+                            <a href="https://getbootstrap.com/docs/4.4/getting-started/introduction/"
+                            target="_blank" class="btn btn-primary">Bootstrap</a>
+                        </div>
+                    </div>
+                    <div class="card mx-auto">
+                        <img class="card-img-top" src="https://leafletjs.com/docs/images/logo.png" alt="Leaflet image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Leaflet</h5>
+                            <p class="card-text">Leaflet is the leading open-source JavaScript library for mobile-friendly interactive maps.</p>
+                            <a href="https://leafletjs.com/" target="_blank" class="btn btn-primary">Leaflet</a>
+                        </div>
+                    </div>
+                    <div class="card mx-auto">
+                        <img class="card-img-top" src="https://financesonline.com/uploads/2019/08/Google-Chart-Tools-logo1.png" alt="Google Charts image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Google Charts</h5>
+                            <p class="card-text">Google chart tools are powerful, simple to use, and free. Try out our rich gallery of interactive charts and data tools.</p>
+                            <a href="https://developers.google.com/chart" target="_blank" class="btn btn-primary">Google Charts</a>
+                        </div>
+                    </div>
+                    <div class="card mx-auto">
+                        <img class="card-img-top" src="https://images.ctfassets.net/fevtq3bap7tj/4rsL8Wiv2EuyaOKgwC0OOU/93dc05128009c2ec38cd34e35dd46fb2/Home_illustration.png?fm=webp" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Fusion Charts</h5>
+                            <p class="card-text">100+ Interactive Charts & 2,000+ Data-driven Maps
+                                Get ready-to-use code for all variations of popular charts like Bar, Column, Line, Area and Pie; or domain 
+                                specific charts like Treemaps, Heatmaps, Gantt Charts, Marrimekko Charts, Gauges, Spider Charts, Waterfall Charts and many more!</p>
+                            <a href="https://www.fusioncharts.com/" target="_blank" class="btn btn-primary">Fusion Charts</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2" id="padding2"> </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+    <br>
+    <div class="footer">
+        <div class="row">
+            <div class="col-md-12">
+                <footer>
+                    <section>
+                        <div class="footer_content">
+                            <nav class="unstyled">
+                                <ul>
+                                    <li><a href="https://github.com/cemoga/visualization-project" target="_blank">GitHub</a></li>
+                                    <li><a href="/references" target="_blank"> Library References</a></li>
+                                    <li><a href="#">Terms of Use</a></li>
+                                    <li><a href="#">Site map</a></li>
+                                </ul>
+                            </nav>
+                            <p>Last updated 03Jan2020</p>
+                            <p>© 2019 College Database</p>
+                        </div>
+                    </section>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+</body>
+
+</html>
