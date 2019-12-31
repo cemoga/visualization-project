@@ -20,6 +20,7 @@
         <li>D3.js</li>
         <li>Plotly.js</li>
         <li>Loader.js</li>
+        <li>Leaflet.js</li>
     </ol></ul>
 </ol>
 
