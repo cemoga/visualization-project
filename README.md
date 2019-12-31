@@ -29,15 +29,13 @@
 <p> To run this code, ensure that all the above libraries are installed in your environment</p>
 
 #### Steps
-1. - Run the `Flask` server by running the `app.py` file.
-2. - Run the IP address created by the `Flask` server which should look like http://127.0.0.1:5000/ or similar. This renders the index.html file containing the visualizations.
+1. - Run the `RUNME.ipynb` `Python Notebook`. 
+2. - Run the `Flask` server by running the `app.py` file.
+3. - Run the IP address created by the `Flask` server which should look like http://127.0.0.1:5000/ or similar. This renders the index.html file containing the visualizations.
 
 set FLASK_APP=./app.py 
 set FLASK_ENV=development
 flask run
-
-npm install -g nodemon
-nodemon --exec "flask run" -e js,py,html
 
 # File Description
 
