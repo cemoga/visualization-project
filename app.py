@@ -1,7 +1,5 @@
 import os
-
 import pandas as pd
-import numpy as np
 import json
 
 import sqlalchemy
@@ -22,7 +20,7 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','') or f"postgres://postgres:postgres@localhost:5432/education_db"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','') or f"postgres://postgres:7718bill@localhost:5432/education_db"
 db = SQLAlchemy(app)
 
 # reflect an existing database into a new model
@@ -383,5 +381,5 @@ def render_static(page_name):
 
 
 if __name__ == "__main__":
-    app.debug = False
+    app.debug = True
     app.run()
