@@ -33,10 +33,6 @@
 2. - Run the `Flask` server by running the `app.py` file.
 3. - Run the IP address created by the `Flask` server which should look like http://127.0.0.1:5000/ or similar. This renders the index.html file containing the visualizations.
 
-set FLASK_APP=./app.py 
-set FLASK_ENV=development
-flask run
-
 # File Description
 
 ## API Python
