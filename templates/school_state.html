@@ -1,60 +1,24 @@
-<!doctype html>
-<html lang="en">
+{% extends 'template.html' %}
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{%block head_scripts%}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+crossorigin=""></script>
 
- 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
-    integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
-    crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
-    integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
-    crossorigin=""></script>
-  
-    <!-- d3 JS -->
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-  
-    <!-- Marker Cluster JS & CSS -->
-    <script type="text/javascript" src="https://unpkg.com/leaflet.markercluster@1.0.3/dist/leaflet.markercluster.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css">
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.Default.css">
-  
-    <!-- Our CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='CSS/style.css') }}">
-    <!-- <link rel="stylesheet" type="text/css" href="../static/css/style.css"> -->
-    <title>College Database</title>
+<!-- d3 JS -->
+<script src="https://d3js.org/d3.v4.min.js"></script>
 
-</head>
+<!-- Marker Cluster JS & CSS -->
+<script type="text/javascript" src="https://unpkg.com/leaflet.markercluster@1.0.3/dist/leaflet.markercluster.js"></script>
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css">
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.Default.css">
+{% endblock %}
 
-
-<header>
-    <div class="container">
-
-        <div class="row">
-            <div class="col-md-12 jumbotron text-center" id="jumbo">
-                <h1><a href="/" title="Home" id="logo">
-                        <h1 class="logo">College Database</h1>
-                    </a></h1>
-            </div>
-        </div>
-    </div>
-</header>
-<div class="row" id="navigation_panel">
-    <div class="col-md-3"></div>
-    <div class="col-md-9">
-        <nav>
-            <ul>
-                <li><a href="/metrics" target="_blank">College Financial Info</a></li>
-                <li><a href="/school_state" target="_blank">School by State</a></li>
-                <li><a href="/sliding_Scale" target="_blank">Map</a></li>
-            </ul>
-        </nav>
-    </div>
-</div>
+{% block breadcrumbs %}
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -62,14 +26,15 @@
 
     </ol>
 </nav>
-<br>
+{% endblock %}
 
-<body>
-    
+{% block body %}
     <div class = "viz">
         <div class="map">map goes here</div>
     </div>
-    
+{% endblock %}
+
+{% block body_scripts %}
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -88,29 +53,4 @@
     <script src="../static/config.js"></script>
     <script src="../static/app.js"></script>
 
-</body>
-
-<div class="footer">
-    <div class="row">
-        <div class="col-md-12">
-            <footer>
-                <section>
-                    <div class="footer_content">
-                        <nav class="unstyled">
-                            <ul>
-                                <li><a href="https://github.com/cemoga/visualization-project" target="_blank">GitHub</a></li>
-                                <li><a href="/references" target="_blank"> Library References</a></li>
-                                <li><a href="#">Terms of Use</a></li>
-                                <li><a href="https://support.google.com/webmasters/answer/156184?hl=en" target="_blank">Site map</a></li>
-                            </ul>
-                        </nav>
-                        <p>Last updated 03Jan2020</p>
-                        <p>© 2019 College Database</p>
-                    </div>
-                </section>
-            </footer>
-        </div>
-    </div>
-</div>
-
-</html>
+{% endblock %}

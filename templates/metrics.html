@@ -1,11 +1,6 @@
-<!doctype html>
-<html lang="en">
+{% extends 'template.html' %}
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    {% block head_scripts %}
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -14,53 +9,25 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <link rel="shortcut icon" href="#" />
 
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='CSS/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
-    <title>College Database</title>
-
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Plotly.js -->
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="shortcut icon" href="#" />
+    {% endblock %}
+    
+    {% block breadcrumbs %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">College Financial Info</li>
 
-</head>
-<header>
-    <div class="container">
-
-        <div class="row">
-            <div class="col-md-12 jumbotron text-center" id="jumbo">
-                <h1><a href="/" title="Home" id="logo">
-                        <h1 class="logo">College Database</h1>
-                    </a></h1>
-            </div>
-        </div>
-    </div>
-</header>
-<div class="row" id="navigation_panel">
-    <div class="col-md-3"></div>
-    <div class="col-md-9">
-        <nav>
-            <ul>
-                <li><a href="/metrics" target="_blank">College Financial Info</a></li>
-                <li><a href="/school_state" target="_blank">School by State</a></li>
-                <li><a href="/sliding_Scale" target="_blank">Map</a></li>
-            </ul>
-        </nav>
-    </div>
-</div>
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Metrics</li>
-
-    </ol>
-</nav>
-<br>
+        </ol>
+    </nav>
+    {% endblock %}
 
 
-<body>
+{% block body %}
     <div class="container">
         <div class="row" style="text-align: center;">
             <div class="col-sm-12">
@@ -117,31 +84,10 @@
         </div>
 
     </div>
-
+    {% endblock %}
+        
+    {% block body_scripts %}
     <script src=" https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"> </script>
     <script src="../static/metrics.js">
     </script>
-
-</body>
-<div class="footer">
-    <div class="row">
-        <div class="col-md-12">
-            <footer>
-                <section>
-                    <div class="footer_content">
-                        <nav class="unstyled">
-                            <ul>
-                                <li><a href="https://github.com/cemoga/visualization-project" target="_blank">GitHub</a></li>
-                                <li><a href="reference" target="_blank"> Library References</a></li>
-                                <li><a href="#">Terms of Use</a></li>
-                                <li><a href="https://support.google.com/webmasters/answer/156184?hl=en" target="_blank">Site map</a></li>
-                            </ul>
-                        </nav>
-                        <p>Last updated 03Jan2020</p>
-                        <p>© 2019 College Database</p>
-                    </div>
-                </section>
-            </footer>
-        </div>
-    </div>
-</div>
+    {% endblock %}
