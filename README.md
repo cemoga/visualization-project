@@ -29,15 +29,16 @@
 <p> To run this code, ensure that all the above libraries are installed in your environment</p>
 
 #### Steps
-1. - Sign up for (https://api.data.gov/signup/ "Data.gov") API key. 
-2. -
-3. - Enter your API in `config.js`
+1. - Sign up for [Data.gov](https://api.data.gov/signup/ "Data.gov") API key. 
+2. - Sign up for [Mapbox](https://account.mapbox.com/auth/signup/ "Mapbox")
+3. - Enter your Mapbox API in `config.js`
 ```JS
 const API_KEY = 'ENTER YOUR API';
 ```
-4. - Enter your PostgreSQL password AND data.gov API key in `config.py`
+4. - Enter your data.gov API key AND PostgreSQL info in `config.py`
 ```PY
 api_key = " ENTER YOUR API"
+UserName = "YOUR POSTGRESQL USERNAME"
 Password = "YOUR POSTGRESQL PASSWORD"
 ```
 5. - Run the `RUNME.ipynb` `Python Notebook`. 
