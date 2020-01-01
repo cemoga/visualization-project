@@ -10,6 +10,7 @@ from sqlalchemy.sql import func
 
 from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
+from config import ServerName, UserName, Password, DataBase
 
 
 
@@ -20,7 +21,7 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','') or f"postgres://postgres:postgres@localhost:5432/education_db"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','') or f"postgres://{UserName}:{Password}@localhost:5432/{DataBase}"
 db = SQLAlchemy(app)
 
 # reflect an existing database into a new model
