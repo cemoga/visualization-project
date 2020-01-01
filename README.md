@@ -29,9 +29,13 @@
 <p> To run this code, ensure that all the above libraries are installed in your environment</p>
 
 #### Steps
-1. - Run the `RUNME.ipynb` `Python Notebook`. 
-2. - Run the `Flask` server by running the `app.py` file.
-3. - Run the IP address created by the `Flask` server which should look like http://127.0.0.1:5000/ or similar. This renders the index.html file containing the visualizations.
+1. - Enter your API key and PostgreSQL password in `config.js`
+```JS
+const API_KEY = 'ENTER YOUR API';
+```
+2. - Run the `RUNME.ipynb` `Python Notebook`. 
+3. - Run the `Flask` server by running the `app.py` file.
+4. - Run the IP address created by the `Flask` server which should look like http://127.0.0.1:5000/ or similar. This renders the index.html file containing the visualizations.
 
 # File Description
 
