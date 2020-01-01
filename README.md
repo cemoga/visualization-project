@@ -29,7 +29,7 @@
 <p> To run this code, ensure that all the above libraries are installed in your environment</p>
 
 #### Steps
-1. - Sign up for [Data.gov] (https://api.data.gov/signup/) API key. 
+1. - Sign up for (https://api.data.gov/signup/ "Data.gov") API key. 
 2. -
 3. - Enter your API in `config.js`
 ```JS
