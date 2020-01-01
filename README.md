@@ -29,13 +29,20 @@
 <p> To run this code, ensure that all the above libraries are installed in your environment</p>
 
 #### Steps
-1. - Enter your API key and PostgreSQL password in `config.js`
+1. - Sign up for [Data.gov] (https://api.data.gov/signup/) API key. 
+2. -
+3. - Enter your API in `config.js`
 ```JS
 const API_KEY = 'ENTER YOUR API';
 ```
-2. - Run the `RUNME.ipynb` `Python Notebook`. 
-3. - Run the `Flask` server by running the `app.py` file.
-4. - Run the IP address created by the `Flask` server which should look like http://127.0.0.1:5000/ or similar. This renders the index.html file containing the visualizations.
+4. - Enter your PostgreSQL password AND data.gov API key in `config.py`
+```PY
+api_key = " ENTER YOUR API"
+Password = "YOUR POSTGRESQL PASSWORD"
+```
+5. - Run the `RUNME.ipynb` `Python Notebook`. 
+6. - Run the `Flask` server by running the `app.py` file.
+7. - Run the IP address created by the `Flask` server which should look like http://127.0.0.1:5000/ or similar. This renders the index.html file containing the visualizations.
 
 # File Description
 
