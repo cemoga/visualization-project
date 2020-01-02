@@ -327,17 +327,17 @@ def yen():
     for state,tuition_IS,tuition_OS, lon, lat, name, city, url, ownership,term, spend_fte in qry:      
         
         json = {}
-        json["State"] = state
-        json["tuitionIn"] = tuition_IS
-        json["tuitionOut"] = tuition_OS
-        json["lon"] = lon
-        json["lat"] = lat
+        json["state"] = state
+        json["tuition_in_state"] = tuition_IS
+        json["tuition_out_of_state"] = tuition_OS
+        json["location_lon"] = lon
+        json["location_lat"] = lat
         json["name"] = name
         json["city"] = city
-        json["url"] = url
-        json["ownership"] = ownership
-        json["term"] = term
-        json["spend_fte"] = spend_fte
+        json["school_url"] = url
+        json["ownership_desc"] = ownership
+        json["institutional_characteristics_leveldesc"] = term
+        json["instructional_expenditure_per_fte"] = spend_fte
         yen.append(json)
 
     return jsonify(yen)
