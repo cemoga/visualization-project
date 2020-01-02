@@ -13,7 +13,7 @@
         <li>Flask_SQLAlchemy</li>
         <li>OS</li>
     </ol></ul>
-    <li>SQL</li>
+    <li>PostgreSQL</li>
     <li>javascript</li>
     <ul type = "none"><li>Libraries:</li> 
     <ol type = "i">
