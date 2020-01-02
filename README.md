@@ -30,7 +30,7 @@
 
 #### Steps
 1. - Sign up for [Data.gov](https://api.data.gov/signup/ "Data.gov") API key. 
-2. - Sign up for [Mapbox](https://account.mapbox.com/auth/signup/ "Mapbox")
+2. - Sign up for [Mapbox](https://account.mapbox.com/auth/signup/ "Mapbox") API key.
 3. - Enter your Mapbox API in `config.js`
 ```JS
 const API_KEY = 'ENTER YOUR API';
