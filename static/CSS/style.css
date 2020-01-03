@@ -1,5 +1,5 @@
 body {
-	margin-bottom: 100px;
+	/* margin-bottom: 100px; */
 	background:white;
 	font-family: "effra";
   font-weight: 300;
@@ -23,9 +23,17 @@ header::after {
   padding-right: 30px;
   margin-bottom: 10px;
 }
-#map{
 
+/* .viz slide{
+text-align: center,
+}
+#chart-container{
+  display:inline-block
+} */
+#map{
   height: 1000px;
+  margin: auto;
+
 }
 .heading{
   text-align: left;
@@ -174,7 +182,7 @@ nav a:hover::before {
 .footer{
   position:fixed;
   overflow: hidden;
-  bottom: 0;
+  bottom: 0px;
   /* height: 100px; */
   width: 100%;
   margin-top: 200 auto;
@@ -183,7 +191,6 @@ nav a:hover::before {
   border-top: 15 px solid #007CBD;
   background-color: #004b87;
 }
-
 
 
 .footer_option1{

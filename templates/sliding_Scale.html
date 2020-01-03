@@ -4,6 +4,16 @@
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<!-- Including the fusioncharts core library -->
+<script type="text/javascript" src="../static/fusioncharts-suite-xt/js/fusioncharts.js"></script>
+<!-- Including the map renderer file -->
+<script type="text/javascript" src="../static/fusioncharts-suite-xt/js/fusioncharts.maps.js "></script>
+<!-- Including the map definition file -->
+<script type="text/javascript" src="../static/fusionmaps-xt-definition/maps/fusioncharts.world.js"></script>
+<!-- Including the fusion theme -->
+<script type="text/javascript" src="../static/fusioncharts-suite-xt/js/themes/fusioncharts.theme.fusion.js"></script>
+
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -17,22 +27,26 @@
 {% endblock %}
 
 {% block body %}
-    <div class = "viz" id="chart-container">FusionCharts will render here</div>
+    <div class = "container" style = "text-align: center;">
+    <div><p>This heatmap displays the average tuition by state for the United States. Hover over each state to display the tuition value.
+         The slider can be used to filter states by price.</p></div>
+ <div class="viz" id="chart-container">FusionCharts will render here</div>
+</div>
 {% endblock %}}
 
 {% block body_scripts %}
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+<script type="text/javascript" src="../static/slidingmap.js"></script>
 
-    <script type="text/javascript" src="../static/slidingmap.js"></script>
 {% endblock %}

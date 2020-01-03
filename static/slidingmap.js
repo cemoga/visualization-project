@@ -15,8 +15,8 @@ FusionCharts.ready(function() {
   var chart = new FusionCharts({
     type: 'maps/usa',
     renderAt: "chart-container",
-    width: '600',
-    height: '400',
+    width: '100%',
+    height: '100%',
     dataFormat: 'json',
     dataSource: {
       "chart": {
@@ -217,7 +217,7 @@ FusionCharts.ready(function() {
         window.drillDownState = drillDownState;
       }
     }
-      }).render();
-    });
+  }).render();
+});
 
 
