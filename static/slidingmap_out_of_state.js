@@ -6,7 +6,7 @@ fetch('/tuition')
   	data = json.map(el => {
     	return {
       	id: el.State,
-        value: el.tuitionIn
+        value: el.tuitionOut
       }
     })
   });
@@ -20,7 +20,7 @@ FusionCharts.ready(function() {
     dataFormat: 'json',
     dataSource: {
       "chart": {
-        "caption": "College/University In-State Tuition Information",
+        "caption": "College/University Out-of-State Tuition Information",
         "subcaption": "2017",
         "entityFillHoverColor": "#cccccc",
         "numberPrefix": "$",
@@ -34,167 +34,167 @@ FusionCharts.ready(function() {
         "code": "#e44a00",
         "gradient": "1",
         "color": [{
-          "maxvalue": "15679",
+          "maxvalue": "18858",
           "displayvalue": "Average",
           "code": "#f8bd19"
         }, {
-          "maxvalue": "32000",
+          "maxvalue": "36000",
           "code": "#6baa01"
         }]
       },
       "data": [{
         "id": "HI",
-        "value": "9250"
+        "value": "12861"
       }, {
         "id": "DC",
-        "value": "26641"
+        "value": "27169"
       }, {
         "id": "MD",
-        "value": "18156"
+        "value": "22279"
       }, {
         "id": "DE",
-        "value": "15830"
+        "value": "20274"
       }, {
         "id": "RI",
-        "value": "30470"
+        "value": "33500"
       }, {
         "id": "WA",
-        "value": "13189"
+        "value": "16721"
       }, {
         "id": "OR",
-        "value": "16292"
+        "value": "21113"
       }, {
         "id": "CA",
-        "value": "14694"
+        "value": "18972"
       }, {
         "id": "AK",
-        "value": "8789"
+        "value": "14279"
       }, {
         "id": "ID",
-        "value": "10922"
+        "value": "15771"
       }, {
         "id": "NV",
-        "value": "11885"
+        "value": "16355"
       }, {
         "id": "AZ",
-        "value": "9533"
+        "value": "14361"
       }, {
         "id": "MT",
-        "value": "7629"
+        "value": "13142"
       }, {
         "id": "WY",
-        "value": "3385"
+        "value": "8784"
       }, {
         "id": "UT",
-        "value": "12172"
+        "value": "15612"
       }, {
         "id": "CO",
-        "value": "12754"
+        "value": "18464"
       }, {
         "id": "NM",
-        "value": "6153"
+        "value": "9909"
       }, {
         "id": "ND",
-        "value": "7550"
+        "value": "10148"
       }, {
         "id": "SD",
-        "value": "12305"
+        "value": "13235"
       }, {
         "id": "NE",
-        "value": "14316"
+        "value": "15553"
       }, {
         "id": "KS",
-        "value": "11736"
+        "value": "13387"
       }, {
         "id": "OK",
-        "value": "10952"
+        "value": "15399"
       }, {
         "id": "TX",
-        "value": "11644"
+        "value": "15246"
       }, {
         "id": "MN",
-        "value": "16132"
+        "value": "17120"
       }, {
         "id": "IA",
-        "value": "18308"
+        "value": "19713"
       }, {
         "id": "MO",
-        "value": "15069"
+        "value": "17054"
       }, {
         "id": "AR",
-        "value": "9056"
+        "value": "11240"
       }, {
         "id": "LA",
-        "value": "11393"
+        "value": "15115"
       }, {
         "id": "WI",
-        "value": "16605"
+        "value": "19146"
       }, {
         "id": "IL",
-        "value": "16082"
+        "value": "19859"
       }, {
         "id": "KY",
-        "value": "16242"
+        "value": "20206"
       }, {
         "id": "TN",
-        "value": "16552"
+        "value": "20501"
       }, {
         "id": "MS",
-        "value": "7822"
+        "value": "10492"
       }, {
         "id": "AL",
-        "value": "10506"
+        "value": "14111"
       }, {
         "id": "GA",
-        "value": "12650"
+        "value": "15706"
       }, {
         "id": "MI",
-        "value": "15636"
+        "value": "18707"
       }, {
         "id": "IN",
-        "value": "22204"
+        "value": "24943"
       }, {
         "id": "OH",
-        "value": "16637"
+        "value": "19395"
       }, {
         "id": "PA",
-        "value": "22803"
+        "value": "25127"
       }, {
         "id": "NY",
-        "value": "19325"
+        "value": "21194"
       }, {
         "id": "VT",
-        "value": "29989"
+        "value": "35514"
       }, {
         "id": "NH",
-        "value": "21005"
+        "value": "25670"
       }, {
         "id": "ME",
-        "value": "18607"
+        "value": "21631"
       }, {
         "id": "MA",
-        "value": "28567"
+        "value": "31049"
       }, {
         "id": "CT",
-        "value": "19927"
+        "value": "26264"
       }, {
         "id": "NJ",
-        "value": "16760"
+        "value": "19566"
       }, {
         "id": "WV",
-        "value": "11413"
+        "value": "14690"
       }, {
         "id": "VA",
-        "value": "16588"
+        "value": "20754"
       }, {
         "id": "NC",
-        "value": "11977"
+        "value": "16325"
       }, {
         "id": "SC",
-        "value": "13940"
+        "value": "18552"
       }, {
         "id": "FL",
-        "value": "14118"
+        "value": "17252"
       }]
     },
   "events": {
