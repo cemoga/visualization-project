@@ -14,7 +14,7 @@
         <li>OS</li>
     </ol></ul>
     <li>PostgreSQL</li>
-    <li>javascript</li>
+    <li>Javascript</li>
     <ul type = "none"><li>Libraries:</li> 
     <ol type = "i">
         <li>D3.js</li>
