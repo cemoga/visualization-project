@@ -28,7 +28,7 @@ FusionCharts.ready(function() {
         "theme": "fusion"
       },
       "colorrange": {
-        "minvalue": "3000",
+        "minvalue": "0",
         "startlabel": "Low",
         "endlabel": "High",
         "code": "#e44a00",
