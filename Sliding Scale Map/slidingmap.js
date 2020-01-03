@@ -1,9 +1,22 @@
+var data;
+
+fetch('/tuition')
+	.then(response => response.json())
+  .then(json => {
+  	data = json.map(el => {
+    	return {
+      	id: el.State,
+        value: el.tuitionIn
+      }
+    })
+  });
+
 FusionCharts.ready(function() {
-  var salesMap = new FusionCharts({
+  var chart = new FusionCharts({
     type: 'maps/usa',
-    renderAt: 'chart-container',
-    width: '600',
-    height: '400',
+    renderAt: "chart-container",
+    width: '100%',
+    height: '100%',
     dataFormat: 'json',
     dataSource: {
       "chart": {
@@ -15,227 +28,176 @@ FusionCharts.ready(function() {
         "theme": "fusion"
       },
       "colorrange": {
-        "minvalue": "0",
+        "minvalue": "3000",
         "startlabel": "Low",
         "endlabel": "High",
         "code": "#e44a00",
         "gradient": "1",
         "color": [{
-          "maxvalue": "14835",
+          "maxvalue": "15679",
           "displayvalue": "Average",
           "code": "#f8bd19"
         }, {
-          "maxvalue": "60000",
+          "maxvalue": "32000",
           "code": "#6baa01"
         }]
       },
       "data": [{
         "id": "HI",
-        "value": "3189",
-        "link": "j-drillDownState-HI|Hawaii"
+        "value": "9250"
       }, {
         "id": "DC",
-        "value": "2879",
-        "link": "j-drillDownState-DC|District of Columbia"
+        "value": "26641"
       }, {
         "id": "MD",
-        "value": "33592",
-        "link": "j-drillDownState-MD|Maryland"
+        "value": "18156"
       }, {
         "id": "DE",
-        "value": "4607",
-        "link": "j-drillDownState-DE|Delaware"
+        "value": "15830"
       }, {
         "id": "RI",
-        "value": "4890",
-        "link": "j-drillDownState-RI|Rhode Island"
+        "value": "30470"
       }, {
         "id": "WA",
-        "value": "34927",
-        "link": "j-drillDownState-WA|Washington"
+        "value": "13189"
       }, {
         "id": "OR",
-        "value": "65798",
-        "link": "j-drillDownState-OR|Oregon"
+        "value": "16292"
       }, {
         "id": "CA",
-        "value": "61861",
-        "link": "j-drillDownState-CA|California"
+        "value": "14694"
       }, {
         "id": "AK",
-        "value": "58911",
-        "link": "j-drillDownState-AK|Alaska"
+        "value": "8789"
       }, {
         "id": "ID",
-        "value": "42662",
-        "link": "j-drillDownState-ID|Idaho"
+        "value": "10922"
       }, {
         "id": "NV",
-        "value": "78041",
-        "link": "j-drillDownState-NV|Nevada"
+        "value": "11885"
       }, {
         "id": "AZ",
-        "value": "41558",
-        "link": "j-drillDownState-AZ|Arizona"
+        "value": "9533"
       }, {
         "id": "MT",
-        "value": "62942",
-        "link": "j-drillDownState-MT|Montana"
+        "value": "7629"
       }, {
         "id": "WY",
-        "value": "78834",
-        "link": "j-drillDownState-WY|Wyoming"
+        "value": "3385"
       }, {
         "id": "UT",
-        "value": "50512",
-        "link": "j-drillDownState-UT|Utah"
+        "value": "12172"
       }, {
         "id": "CO",
-        "value": "73026",
-        "link": "j-drillDownState-CO|Colorado"
+        "value": "12754"
       }, {
         "id": "NM",
-        "value": "78865",
-        "link": "j-drillDownState-NM|New Mexico"
+        "value": "6153"
       }, {
         "id": "ND",
-        "value": "50554",
-        "link": "j-drillDownState-ND|North Dakota"
+        "value": "7550"
       }, {
         "id": "SD",
-        "value": "35922",
-        "link": "j-drillDownState-SD|South Dakota"
+        "value": "12305"
       }, {
         "id": "NE",
-        "value": "43736",
-        "link": "j-drillDownState-NE|Nebraska"
+        "value": "14316"
       }, {
         "id": "KS",
-        "value": "32681",
-        "link": "j-drillDownState-KS|Kansas"
+        "value": "11736"
       }, {
         "id": "OK",
-        "value": "79038",
-        "link": "j-drillDownState-OK|Oklahoma"
+        "value": "10952"
       }, {
         "id": "TX",
-        "value": "97344",
-        "link": "j-drillDownState-TX|Texas"
+        "value": "11644"
       }, {
         "id": "MN",
-        "value": "43485",
-        "link": "j-drillDownState-MN|Minnesota"
+        "value": "16132"
       }, {
         "id": "IA",
-        "value": "46515",
-        "link": "j-drillDownState-IA|Iowa"
+        "value": "18308"
       }, {
         "id": "MO",
-        "value": "63715",
-        "link": "j-drillDownState-MO|Missouri"
+        "value": "15069"
       }, {
         "id": "AR",
-        "value": "34497",
-        "link": "j-drillDownState-AR|Arkansas"
+        "value": "9056"
       }, {
         "id": "LA",
-        "value": "70706",
-        "link": "j-drillDownState-LA|Louisiana"
+        "value": "11393"
       }, {
         "id": "WI",
-        "value": "42382",
-        "link": "j-drillDownState-WI|Wisconsin"
+        "value": "16605"
       }, {
         "id": "IL",
-        "value": "73202",
-        "link": "j-drillDownState-IL|Illinois"
+        "value": "16082"
       }, {
         "id": "KY",
-        "value": "79118",
-        "link": "j-drillDownState-KY|Kentucky"
+        "value": "16242"
       }, {
         "id": "TN",
-        "value": "44657",
-        "link": "j-drillDownState-TN|Tennessee"
+        "value": "16552"
       }, {
         "id": "MS",
-        "value": "66205",
-        "link": "j-drillDownState-MS|Mississippi"
+        "value": "7822"
       }, {
         "id": "AL",
-        "value": "75873",
-        "link": "j-drillDownState-AL|Alabama"
+        "value": "10506"
       }, {
         "id": "GA",
-        "value": "76895",
-        "link": "j-drillDownState-GA|Georgia"
+        "value": "12650"
       }, {
         "id": "MI",
-        "value": "67695",
-        "link": "j-drillDownState-MI|Michigan"
+        "value": "15636"
       }, {
         "id": "IN",
-        "value": "920",
-        "link": "j-drillDownState-IN|Indiana"
+        "value": "22204"
       }, {
         "id": "OH",
-        "value": "32960",
-        "link": "j-drillDownState-OH|Ohio"
+        "value": "16637"
       }, {
         "id": "PA",
-        "value": "54346",
-        "link": "j-drillDownState-PA|Pennsylvania"
+        "value": "22803"
       }, {
         "id": "NY",
-        "value": "42828",
-        "link": "j-drillDownState-NY|New York"
+        "value": "19325"
       }, {
         "id": "VT",
-        "value": "77411",
-        "link": "j-drillDownState-VT|Vermont"
+        "value": "29989"
       }, {
         "id": "NH",
-        "value": "51403",
-        "link": "j-drillDownState-NH|New Hampshire"
+        "value": "21005"
       }, {
         "id": "ME",
-        "value": "64636",
-        "link": "j-drillDownState-ME|Maine"
+        "value": "18607"
       }, {
         "id": "MA",
-        "value": "51767",
-        "link": "j-drillDownState-MA|Massachusetts"
+        "value": "28567"
       }, {
         "id": "CT",
-        "value": "57353",
-        "link": "j-drillDownState-CT|Connecticut"
+        "value": "19927"
       }, {
         "id": "NJ",
-        "value": "80788",
-        "link": "j-drillDownState-NJ|New Jersey"
+        "value": "16760"
       }, {
         "id": "WV",
-        "value": "95890",
-        "link": "j-drillDownState-WV|West Virginia"
+        "value": "11413"
       }, {
         "id": "VA",
-        "value": "83140",
-        "link": "j-drillDownState-VA|Virginia"
+        "value": "16588"
       }, {
         "id": "NC",
-        "value": "75425",
-        "link": "j-drillDownState-NC|North Carolina"
+        "value": "11977"
       }, {
         "id": "SC",
-        "value": "88234",
-        "link": "j-drillDownState-SC|South Carolina"
+        "value": "13940"
       }, {
         "id": "FL",
-        "value": "88234",
-        "link": "j-drillDownState-FL|Florida"
+        "value": "14118"
       }]
     },
-    "events": {
+  "events": {
       "renderComplete": function() {
         //Function that gets invoked when entity is clicked.
         function drillDownState(stateName) {
@@ -249,7 +211,7 @@ FusionCharts.ready(function() {
           } else {
             window.open("https://www.google.com/maps/place/USA-" + ln);
           }
-
+    
         }
         //expose to the window scope
         window.drillDownState = drillDownState;
@@ -257,3 +219,5 @@ FusionCharts.ready(function() {
     }
   }).render();
 });
+
+
