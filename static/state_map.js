@@ -84,7 +84,7 @@ function f(State){
             + "<b>Instructional Expenditure per FTE: </b>"
             + "$"+response.instructional_expenditure_per_fte+"<br/>"
             + "<b>School URL: </b>"
-            + "<a href= '" + response.school_url + "'>" +response.school_url+"</a> </p>"
+            + `<a href=https://${response.school_url} target = "__blank">${response.school_url}</a> </p>`
             // +"<iframe src='https://www.google.com'>Iframe</iframe>"
           ).addTo(layerGroup);
         }
