@@ -23,6 +23,10 @@ header::after {
   padding-right: 30px;
   margin-bottom: 10px;
 }
+#map{
+
+  height: 1000px;
+}
 .heading{
   text-align: left;
   background-color: #001E46 ;

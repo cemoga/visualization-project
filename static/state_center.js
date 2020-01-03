@@ -25,7 +25,7 @@ function center(new_state){
         return([39.32,-75.51])
     }
     else if(new_state=="FL"){
-        return([27.77,])
+        return([27.77,-81.51])
     }
     else if(new_state=="GA"){
         return([33.04,-83.64])
@@ -150,23 +150,27 @@ function center(new_state){
     else if(new_state=="WY"){
         return([42.75,-107.30])
     }
+    // US Territories
     else if(new_state=="PR"){
         return([18.222,-66.430])
     }
     else if(new_state=="GU"){
-        return([12.976,-143.581])
+        return([13.4443, 144.7937])
     }
     else if(new_state=="AS"){
-        return([13.851,-169.057])
+        return([-14.3064071, -170.6950175])
     }
     else if(new_state=="VI"){
         return([18.048,-64.803])
     }
     else if(new_state=="PW"){
-        return([7.515,-134.583])
+        return([7.515, 134.5825])
     }
     else if(new_state=="MP"){
-        return([18.318, -146.028])
+        return([18.318, 146.028])
+    }
+    else if(new_state=="FM"){
+        return([7.4256, 150.5508])
     }
     else{
       return[38.90,-77.03]
