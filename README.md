@@ -21,6 +21,7 @@
         <li>Plotly.js</li>
         <li>Google Charts</li>
         <li>Leaflet.js</li>
+        <li>ZoomCharts.js</li>
     </ol></ul>
 </ol>
 
