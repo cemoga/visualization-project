@@ -28,173 +28,173 @@ FusionCharts.ready(function() {
         "theme": "fusion"
       },
       "colorrange": {
-        "minvalue": "0",
+        "minvalue": "3000",
         "startlabel": "Low",
         "endlabel": "High",
         "code": "#e44a00",
         "gradient": "1",
         "color": [{
-          "maxvalue": "14835",
+          "maxvalue": "15679",
           "displayvalue": "Average",
           "code": "#f8bd19"
         }, {
-          "maxvalue": "60000",
+          "maxvalue": "32000",
           "code": "#6baa01"
         }]
       },
       "data": [{
         "id": "HI",
-        "value": "3189"
+        "value": "9250"
       }, {
         "id": "DC",
-        "value": "2879"
+        "value": "26641"
       }, {
         "id": "MD",
-        "value": "33592"
+        "value": "18156"
       }, {
         "id": "DE",
-        "value": "4607"
+        "value": "15830"
       }, {
         "id": "RI",
-        "value": "4890"
+        "value": "30470"
       }, {
         "id": "WA",
-        "value": "34927"
+        "value": "13189"
       }, {
         "id": "OR",
-        "value": "65798"
+        "value": "16292"
       }, {
         "id": "CA",
-        "value": "61861"
+        "value": "14694"
       }, {
         "id": "AK",
-        "value": "58911"
+        "value": "8789"
       }, {
         "id": "ID",
-        "value": "42662"
+        "value": "10922"
       }, {
         "id": "NV",
-        "value": "78041"
+        "value": "11885"
       }, {
         "id": "AZ",
-        "value": "41558"
+        "value": "9533"
       }, {
         "id": "MT",
-        "value": "62942"
+        "value": "7629"
       }, {
         "id": "WY",
-        "value": "78834"
+        "value": "3385"
       }, {
         "id": "UT",
-        "value": "50512"
+        "value": "12172"
       }, {
         "id": "CO",
-        "value": "73026"
+        "value": "12754"
       }, {
         "id": "NM",
-        "value": "78865"
+        "value": "6153"
       }, {
         "id": "ND",
-        "value": "50554"
+        "value": "7550"
       }, {
         "id": "SD",
-        "value": "35922"
+        "value": "12305"
       }, {
         "id": "NE",
-        "value": "43736"
+        "value": "14316"
       }, {
         "id": "KS",
-        "value": "32681"
+        "value": "11736"
       }, {
         "id": "OK",
-        "value": "79038"
+        "value": "10952"
       }, {
         "id": "TX",
-        "value": "97344"
+        "value": "11644"
       }, {
         "id": "MN",
-        "value": "43485"
+        "value": "16132"
       }, {
         "id": "IA",
-        "value": "46515"
+        "value": "18308"
       }, {
         "id": "MO",
-        "value": "63715"
+        "value": "15069"
       }, {
         "id": "AR",
-        "value": "34497"
+        "value": "9056"
       }, {
         "id": "LA",
-        "value": "70706"
+        "value": "11393"
       }, {
         "id": "WI",
-        "value": "42382"
+        "value": "16605"
       }, {
         "id": "IL",
-        "value": "73202"
+        "value": "16082"
       }, {
         "id": "KY",
-        "value": "79118"
+        "value": "16242"
       }, {
         "id": "TN",
-        "value": "44657"
+        "value": "16552"
       }, {
         "id": "MS",
-        "value": "66205"
+        "value": "7822"
       }, {
         "id": "AL",
-        "value": "75873"
+        "value": "10506"
       }, {
         "id": "GA",
-        "value": "76895"
+        "value": "12650"
       }, {
         "id": "MI",
-        "value": "67695"
+        "value": "15636"
       }, {
         "id": "IN",
-        "value": "920"
+        "value": "22204"
       }, {
         "id": "OH",
-        "value": "32960"
+        "value": "16637"
       }, {
         "id": "PA",
-        "value": "54346"
+        "value": "22803"
       }, {
         "id": "NY",
-        "value": "42828"
+        "value": "19325"
       }, {
         "id": "VT",
-        "value": "77411"
+        "value": "29989"
       }, {
         "id": "NH",
-        "value": "51403"
+        "value": "21005"
       }, {
         "id": "ME",
-        "value": "64636"
+        "value": "18607"
       }, {
         "id": "MA",
-        "value": "51767"
+        "value": "28567"
       }, {
         "id": "CT",
-        "value": "57353"
+        "value": "19927"
       }, {
         "id": "NJ",
-        "value": "80788"
+        "value": "16760"
       }, {
         "id": "WV",
-        "value": "95890"
+        "value": "11413"
       }, {
         "id": "VA",
-        "value": "83140"
+        "value": "16588"
       }, {
         "id": "NC",
-        "value": "75425"
+        "value": "11977"
       }, {
         "id": "SC",
-        "value": "88234"
+        "value": "13940"
       }, {
         "id": "FL",
-        "value": "88234"
+        "value": "14118"
       }]
     },
   "events": {
