@@ -81,9 +81,10 @@ This folder contains all the `Javascript` code used to create the visualizations
 1. `dashboard.js` file that populates metrics on `index.html`.
 2. `metrics.js` loads data for College Financial Info visualization.
 3. `state_centers.js` contains coordinates for the center of each state and US territory.
-4. `slidingmap.js` contains data for tuition average by state for sliding scale map.
-5. `fusioncharts-suite-xt` contains FusionCharts.js library documentation.
-6. `fusioncharts-xt-definition` contains FusionCharts.js maps definitions.
+4. `slidingmap.js` loads data for in-state tuition average by state for sliding scale map.
+5. `slidingmap_out_of_state.js` loads data for out-of-state tuition average by state for sliding scale map.
+6. `fusioncharts-suite-xt` contains FusionCharts.js library documentation.
+7. `fusioncharts-xt-definition` contains FusionCharts.js maps definitions.
 
 
 ## templates
