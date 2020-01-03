@@ -1,6 +1,6 @@
 var data;
 
-fetch('/metric_state')
+fetch('/tuition')
 	.then(response => response.json())
   .then(json => {
   	data = json.map(el => {
