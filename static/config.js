@@ -1,2 +1,1 @@
-// MapBox API key
-const API_KEY = "pk.eyJ1IjoiYmFzdGF3MSIsImEiOiJjazR2eTJ2b3UwaW5oM21vOXM1bDE5NmhwIn0.XGyRrGB0wJsIK3mevf_EBw";
+const API_KEY = 'pk.eyJ1Ijoicm9tYXBhdGVsMjEiLCJhIjoiY2szcngzNmRwMDExbjNuam1zNW1uNXg2ciJ9.95i4lD_EqEmvSfOSU7LU1A';
