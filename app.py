@@ -325,7 +325,10 @@ def yen():
 
     yen = []
     for state,tuition_IS,tuition_OS, lon, lat, name, city, url, ownership,term, spend_fte in qry:      
-        
+        if tuition_IS is None:
+            tuition_IS = ""
+        if tuition_OS is None:
+            tuition_OS = "" 
         json = {}
         json["state"] = state
         json["tuition_in_state"] = tuition_IS
