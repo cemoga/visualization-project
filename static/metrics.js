@@ -157,7 +157,7 @@ d3.json(url).then((data) => {
         // document.querySelector('.textmap').innerText = "Instructional expenditures divided by the number of FTE students (undergraduates and graduate students) (http://nces.ed.gov/ipeds/glossary/index.asp?id=854). Instructional expenditures are included in the IPEDS Finance component and FTE enrollment is included in the IPEDS 12-Month Enrollment component. This metric includes graduate students."
         d3.select(".textmap")
         .append()
-        .html(`<p>Instructional expenditures divided by the number of FTE students (undergraduates and graduate students) ('<a href = "http://nces.ed.gov/ipeds/glossary/index.asp?id=854" target = "__blank"> http://nces.ed.gov/ipeds/glossary/index.asp?id=854"</a>"). Instructional expenditures are included in the IPEDS Finance component and FTE enrollment is included in the IPEDS 12-Month Enrollment component. This metric includes graduate students.</p>`)
+        .html(`<p>Instructional expenditures divided by the number of FTE students (undergraduates and graduate students) (<a href = 'http://nces.ed.gov/ipeds/glossary/index.asp?id=854' target = '__blank'> http://nces.ed.gov/ipeds/glossary/index.asp?id=854</a>). Instructional expenditures are included in the IPEDS Finance component and FTE enrollment is included in the IPEDS 12-Month Enrollment component. This metric includes graduate students.</p>`)
         scalevar = scaleExp
         break;
       case "Faculty Salary":
