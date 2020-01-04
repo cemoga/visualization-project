@@ -2,8 +2,8 @@
 
 {%block head_scripts%}
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css">
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css">
 
 <!-- d3 JS -->
 <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -15,51 +15,58 @@
 
 {% block breadcrumbs %}
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">School by State</li>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">School by State</li>
 
-    </ol>
+  </ol>
 </nav>
 {% endblock %}
 
 {% block body %}
-<form style = "width: 175px">
+
+<div class="container state" style = "text-align: center;">
+  <div>
+    <p style = "font-size: 20px"> Please select a state or territory from the dropdown to see locations of schools for that selection. Clicking on
+      the marker will
+      display details for each school. </p>
+  </div>
+  
+  <form style="width: 175px;">
     <div class="form-group">
       <ul class="list-group" id="filters">
-        <li class = "filter list-group-item">
-            <select class = "form-control" id = "filter-by" placeholder="Choose a State" onchange = "optionChanged(this.value)">
-              <option value="" selected disabled>Choose a State</option>
-            </select>
-          </li>
+        <li class="filter list-group-item" style = "font-size: 13px;">
+          <select class="form-control" id="filter-by" placeholder="Choose a State" onchange="optionChanged(this.value)">
+            <option value="" selected disabled>Choose a State</option>
+          </select>
+        </li>
     </div>
   </form>
-<div class = 'viz'>
+
+  <div class='viz'>
     <div id="map"></div>
+  </div>
 </div>
 {% endblock %}
 
 {% block body_scripts %}
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-        <!-- D3.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+<!-- D3.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
 
-    <!-- Leaflet JavaScript -->
-     <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>>
+<!-- Leaflet JavaScript -->
+<script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>>
 
-    <!-- Project .js files -->
-    <script src="../static/config.js"></script>
-    <script src="../static/state_map.js"></script>
-    <script src="../static/state_center.js"></script>
+<!-- Project .js files -->
+<script src="../static/config.js"></script>
+<script src="../static/state_map.js"></script>
+<script src="../static/state_center.js"></script>
 
 {% endblock %}

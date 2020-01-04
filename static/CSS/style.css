@@ -9,7 +9,6 @@ body {
 
 header {
   background:  #2B3E70;
-  padding: 10px;
   width: 100%;
 }
 
@@ -22,6 +21,7 @@ header::after {
   padding-left: 30px;
   padding-right: 30px;
   margin-bottom: 10px;
+  width:100%
 }
 
 /* .viz slide{
@@ -32,9 +32,9 @@ text-align: center,
 } */
 #map{
   height: 1000px;
-  margin: auto;
 
 }
+
 .heading{
   text-align: left;
   background-color: #001E46 ;
@@ -155,10 +155,7 @@ nav a::before {
 nav a:hover::before {
   width: 85%;
 }
-.container{
-  margin: 0 auto;
-  max-width: 100%;
-}
+
 .container-fluid{
   margin: 0 auto;
 }
