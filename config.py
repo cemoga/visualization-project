@@ -1,6 +1,6 @@
 # Enter your API keys for the https://api.data.gov/ed/collegescorecard/v1/schools.json?api_key=
 
-api_key = "kmdiuaGF6wL23gmQ7ERvY4bhxS4cXeNrQ8FDDpVr"
+api_key = "YOUR KEY HERE"
 
 
 ServerName = "localhost"
