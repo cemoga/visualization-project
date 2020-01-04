@@ -77,6 +77,9 @@ This folder contains files that:
 9. `queries` This folder contains files with `SQL` code used to create the database and tables described in files 1. It also contains the `SQL` code used to query the database as described in files 5.
 10. `CollegeScorecardDataDictionary.xlsx` This is a file downloaded the Department-of-Education API's Documentation: [College Scorecard](https://collegescorecard.ed.gov/data/documentation/ "API's Documentation Page"). This contains the metadata explanation used in the visualizations and the information used to create the CSV files int the `data` folder.
 
+### SQL Schema created by running `Run_Me.ipynb`
+<img src = "https://github.com/cemoga/visualization-project/blob/master/API%20Python/1_%20Entity%20Relation%20Diagram.png">
+
 ## app.py
 This file contains the `Python` code necessary to create a `Flask` development server to deploy the visualizations created using `Javascript` libraries.
 
