@@ -95,10 +95,10 @@ d3.json(url).then((data) => {
         + "<br><b> City: </b>" + schoolCity[i]
         + "<br><b> State: </b>" + schoolState[i]
         + "<br><b> Geolocation: </b>(" + schoolLat[i] + "," + schoolLong[i] + ")"
-        + "<br><b> Out of State Tuition: </b>" + "$" + tuitionOut[i]
-        + "<br><b> Tuition in State: </b>" + "$" + tuitionIn[i]
-        + "<br><b> Expenditure per Student: </b>" + "$" + expenditurePerStudent[i]
-        + "<br><b> Tuition Revenue per Student: </b>" + "$" + tuitionRevenuePerStudent[i];
+        + "<br><b> Annual Out of State Tuition: </b>" + "$" + tuitionOut[i]
+        + "<br><b> Annual In-State Tuition: </b>" + "$" + tuitionIn[i]
+        + "<br><b> Annual Expenditure per Student: </b>" + "$" + expenditurePerStudent[i]
+        + "<br><b> Annual Tuition Revenue per Student: </b>" + "$" + tuitionRevenuePerStudent[i];
       currentLat = schoolLat[i]; // 7. Placeholder for the loop - Latitude
       currentLong = schoolLong[i]; // 8. Placeholder for the loop - Longitude
 
@@ -136,7 +136,7 @@ d3.json(url).then((data) => {
     }
 
     switch (chosenVariable) {
-      case "Tuition in State":
+      case "Annual In-State Tuition":
         citySize = citySizeInState;
         // document.querySelector('.textmap').innerText = "In-state tuition and fees"
         d3.select(".textmap")
@@ -145,7 +145,7 @@ d3.json(url).then((data) => {
         .html("<p>In-state tuition and fees.</p>")
         scalevar = scaleTuition
         break;
-      case "Tuition Out of State":
+      case "Annual Out of State Tuition":
         citySize = citySizeOutState;
         // document.querySelector('.textmap').innerText = "Out-of-state tuition and fees"
         d3.select(".textmap")
@@ -154,7 +154,7 @@ d3.json(url).then((data) => {
         .html("<p>Out-of-state tuition and fees.</p>")
         scalevar = scaleTuition
         break;
-      case "Expenditure per Student":
+      case "Annual Expenditure per Student":
         citySize = expPerStudent;
         // document.querySelector('.textmap').innerText = "Instructional expenditures divided by the number of FTE students (undergraduates and graduate students) (http://nces.ed.gov/ipeds/glossary/index.asp?id=854). Instructional expenditures are included in the IPEDS Finance component and FTE enrollment is included in the IPEDS 12-Month Enrollment component. This metric includes graduate students."
         d3.select(".textmap")
@@ -163,7 +163,7 @@ d3.json(url).then((data) => {
         .html(`<p>Instructional expenditures divided by the number of FTE students (undergraduates and graduate students) (<a href = 'http://nces.ed.gov/ipeds/glossary/index.asp?id=854' target = '__blank'> http://nces.ed.gov/ipeds/glossary/index.asp?id=854</a>). Instructional expenditures are included in the IPEDS Finance component and FTE enrollment is included in the IPEDS 12-Month Enrollment component. This metric includes graduate students.</p>`)
         scalevar = scaleExp
         break;
-      case "Faculty Salary":
+      case "Annual Faculty Salary":
         citySize = facSalary;
         // document.querySelector('.textmap').innerText = "Average faculty salary per month, calculated from the IPEDS Human Resources component. This metric is calculated as the total salary outlays divided by the number of months worked for all full-time nonmedical instructional staff. Prior to the 2011-12 academic year, when months worked were reported in groups, the value for 9-10 months is estimated as 9.5 months and the value for 11-12 months is estimated as 11.5 months. Values prior to the 2003-04 academic year are limited to degree-granting institutions for consistency with values in subsequent academic years."
         d3.select(".textmap")
@@ -172,7 +172,7 @@ d3.json(url).then((data) => {
         .html(`<p> Average faculty salary per month, calculated from the IPEDS Human Resources component. This metric is calculated as the total salary outlays divided by the number of months worked for all full-time nonmedical instructional staff. Prior to the 2011-12 academic year, when months worked were reported in groups, the value for 9-10 months is estimated as 9.5 months and the value for 11-12 months is estimated as 11.5 months. Values prior to the 2003-04 academic year are limited to degree-granting institutions for consistency with values in subsequent academic years.</p>`)
         scalevar = scaleFac
         break;
-      case "Tuition Revenue per Student":
+      case "Annual Tuition Revenue per Student":
         // document.querySelector('.textmap').innerText = "Net tuition revenue (tuition revenue minus discounts and allowances) divided by the number of FTE students (undergraduates and graduate students) (http://nces.ed.gov/ipeds/glossary/index.asp?id=854). Net tuition revenue is included in the IPEDS Finance component and FTE enrollment is included in the IPEDS 12-Month Enrollment component. This metric includes graduate students."
         d3.select(".textmap")
         .html("")
@@ -185,7 +185,7 @@ d3.json(url).then((data) => {
     };
   };
   // Initial Values for the user selection with the dropdown
-  setBubblePlot("Expenditure per Student", 'All', "All")
+  setBubblePlot("Annual Expenditure per Student", 'All', "All")
 
   // Function that creates the plots
   function setBubblePlot(chosenVariable, chosenState, chosenCity) {
@@ -285,11 +285,11 @@ d3.json(url).then((data) => {
   assignOptions(listofStates, stateSelector, true, true),
     assignOptions([], citySelector, true, true),
     assignOptions([
-      "Tuition in State",
-      "Tuition Out of State",
-      "Expenditure per Student",
-      "Faculty Salary",
-      "Tuition Revenue per Student"
+      "Annual In-State Tuition",
+      "Annual Out of State Tuition",
+      "Annual Expenditure per Student",
+      "Annual Faculty Salary",
+      "Annual Tuition Revenue per Student"
     ], variableInfoSelector, false, true);
 
   function updateState() {
@@ -312,7 +312,7 @@ d3.json(url).then((data) => {
 
   // Variables by Default
 
-  gauge_chart("Expenditure per Student", 'All', "All")
+  gauge_chart("Annual Expenditure per Student", 'All', "All")
 
   function gauge_chart(chosenVariable, chosenState, chosenCity) {
 
@@ -401,7 +401,7 @@ d3.json(url).then((data) => {
             });
 
             switch (chosenVariable) {
-              case "Tuition in State":
+              case "Annual In-State Tuition":
                 redTo = 30000
                 redFrom = redTo * 6 / 8
                 yellowFrom = redTo * 5 / 8
@@ -410,7 +410,7 @@ d3.json(url).then((data) => {
                 stateAvg = tuitionIn_st
                 cityAvg = tuitionIn_city
                 break;
-              case "Tuition Out of State":
+              case "Annual Out of State Tuition":
                 redTo = 35000
                 redFrom = redTo * 6 / 8
                 yellowFrom = redTo * 5 / 8
@@ -419,7 +419,7 @@ d3.json(url).then((data) => {
                 stateAvg = tuitionOut_st
                 cityAvg = tuitionOut_city
                 break;
-              case "Expenditure per Student":
+              case "Annual Expenditure per Student":
                 redTo = 20000
                 redFrom = redTo * 6 / 8
                 yellowFrom = redTo * 5 / 8
@@ -428,7 +428,7 @@ d3.json(url).then((data) => {
                 stateAvg = expenditure_st
                 cityAvg = expenditure_city
                 break;
-              case "Faculty Salary":
+              case "Annual Faculty Salary":
                 redTo = 12000
                 redFrom = redTo * 6 / 8
                 yellowFrom = redTo * 5 / 8
@@ -437,7 +437,7 @@ d3.json(url).then((data) => {
                 stateAvg = facSalary_st
                 cityAvg = facSalary_city
                 break;
-              case "Tuition Revenue per Student":
+              case "Annual Tuition Revenue per Student":
                 redTo = 25000
                 redFrom = redTo * 6 / 8
                 yellowFrom = redTo * 5 / 8
