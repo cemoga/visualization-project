@@ -140,7 +140,7 @@ d3.json(url).then((data) => {
         citySize = citySizeInState;
         // document.querySelector('.textmap').innerText = "In-state tuition and fees"
         d3.select(".textmap")
-        .append()
+        // .append()
         .http("p","In-state tuition and fees")
         scalevar = scaleTuition
         break;
@@ -148,7 +148,7 @@ d3.json(url).then((data) => {
         citySize = citySizeOutState;
         // document.querySelector('.textmap').innerText = "Out-of-state tuition and fees"
         d3.select(".textmap")
-        .append()
+        // .append()
         .http("p","Out-of-state tuition and fees")
         scalevar = scaleTuition
         break;
@@ -156,7 +156,7 @@ d3.json(url).then((data) => {
         citySize = expPerStudent;
         // document.querySelector('.textmap').innerText = "Instructional expenditures divided by the number of FTE students (undergraduates and graduate students) (http://nces.ed.gov/ipeds/glossary/index.asp?id=854). Instructional expenditures are included in the IPEDS Finance component and FTE enrollment is included in the IPEDS 12-Month Enrollment component. This metric includes graduate students."
         d3.select(".textmap")
-        .append()
+        // .append()
         .html(`<p>Instructional expenditures divided by the number of FTE students (undergraduates and graduate students) (<a href = 'http://nces.ed.gov/ipeds/glossary/index.asp?id=854' target = '__blank'> http://nces.ed.gov/ipeds/glossary/index.asp?id=854</a>). Instructional expenditures are included in the IPEDS Finance component and FTE enrollment is included in the IPEDS 12-Month Enrollment component. This metric includes graduate students.</p>`)
         scalevar = scaleExp
         break;
@@ -164,14 +164,14 @@ d3.json(url).then((data) => {
         citySize = facSalary;
         // document.querySelector('.textmap').innerText = "Average faculty salary per month, calculated from the IPEDS Human Resources component. This metric is calculated as the total salary outlays divided by the number of months worked for all full-time nonmedical instructional staff. Prior to the 2011-12 academic year, when months worked were reported in groups, the value for 9-10 months is estimated as 9.5 months and the value for 11-12 months is estimated as 11.5 months. Values prior to the 2003-04 academic year are limited to degree-granting institutions for consistency with values in subsequent academic years."
         d3.select(".textmap")
-        .append()
+        // .append()
         .html(`<p> Average faculty salary per month, calculated from the IPEDS Human Resources component. This metric is calculated as the total salary outlays divided by the number of months worked for all full-time nonmedical instructional staff. Prior to the 2011-12 academic year, when months worked were reported in groups, the value for 9-10 months is estimated as 9.5 months and the value for 11-12 months is estimated as 11.5 months. Values prior to the 2003-04 academic year are limited to degree-granting institutions for consistency with values in subsequent academic years.</p>`)
         scalevar = scaleFac
         break;
       case "Tuition Revenue per Student":
         // document.querySelector('.textmap').innerText = "Net tuition revenue (tuition revenue minus discounts and allowances) divided by the number of FTE students (undergraduates and graduate students) (http://nces.ed.gov/ipeds/glossary/index.asp?id=854). Net tuition revenue is included in the IPEDS Finance component and FTE enrollment is included in the IPEDS 12-Month Enrollment component. This metric includes graduate students."
         d3.select(".textmap")
-        .append()
+        // .append()
         .html(`<p>Net tuition revenue (tuition revenue minus discounts and allowances) divided by the number of FTE students (undergraduates and graduate students) (<a href = "http://nces.ed.gov/ipeds/glossary/index.asp?id=854" target="__blank">http://nces.ed.gov/ipeds/glossary/index.asp?id=854</a>). Net tuition revenue is included in the IPEDS Finance component and FTE enrollment is included in the IPEDS 12-Month Enrollment component. This metric includes graduate students.</p>`)
 
         citySize = tuRevPerStudent;
