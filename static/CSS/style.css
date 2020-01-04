@@ -27,12 +27,6 @@ header::after {
   width:100%
 }
 
-/* .viz slide{
-text-align: center,
-}
-#chart-container{
-  display:inline-block
-} */
 #map{
   height: 1000px;
 
@@ -135,7 +129,7 @@ nav a {
   color:#8ACBEC;
   text-decoration: none;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 20px;
   margin-bottom: 0px;
 }
 

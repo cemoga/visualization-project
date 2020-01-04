@@ -36,6 +36,7 @@ geoloc = Base.classes.geoloc
 state_fips = Base.classes.state_fips
 detail = Base.classes.detail
 institutional_characteristics_level = Base.classes.institutional_characteristics_level
+owner = Base.classes.ownership
 
 
 
@@ -321,7 +322,7 @@ def tuition():
 def yen():
     """Return a dictionary of tuitions."""
 
-    qry = db.session.query(basic.state,metrics.tuition_in_state,metrics.tuition_out_of_state,geoloc.location_lon, geoloc.location_lat,basic.name, basic.city,basic.school_url,detail.ownership, institutional_characteristics_level.description,metrics.instructional_expenditure_per_fte).filter(basic.id==metrics.id).filter(basic.id==detail.id).filter(basic.id==geoloc.id).filter(detail.institutional_characteristics_level == institutional_characteristics_level.code).all()
+    qry = db.session.query(basic.state,metrics.tuition_in_state,metrics.tuition_out_of_state,geoloc.location_lon, geoloc.location_lat,basic.name, basic.city,basic.school_url,owner.description, institutional_characteristics_level.description,metrics.instructional_expenditure_per_fte).filter(basic.id==metrics.id).filter(basic.id==detail.id).filter(basic.id==geoloc.id).filter(detail.ownership==owner.code).filter(detail.institutional_characteristics_level == institutional_characteristics_level.code).all()
 
     yen = []
     for state,tuition_IS,tuition_OS, lon, lat, name, city, url, ownership,term, spend_fte in qry:      
