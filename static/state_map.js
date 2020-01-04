@@ -53,7 +53,7 @@ function f(State){
   //   container._leaflet_id = null;
   // }
   var myCenter = center(State);
-  console.log(myCenter);
+  // console.log(myCenter);
   // Center view on new location and zoom
   myMap.setView(myCenter, 7)
   d3.json(link).then(function (data){
