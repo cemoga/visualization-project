@@ -11,6 +11,9 @@ header {
   background:  #2B3E70;
   width: 100%;
 }
+p{
+  font-size:25px;
+}
 
 header::after {
   content: '';
