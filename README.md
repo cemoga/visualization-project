@@ -8,10 +8,16 @@
     <ul type = "none"><li>Libraries: </li>
     <ol type = "i">
         <li>Pandas</li>
+        <li>Numpy</li>
+        <li>Requests</li>
         <li>SQLAlchemy</li>
         <li>Flask</li>
         <li>Flask_SQLAlchemy</li>
+        <li>SQLAlchemy</li>
+        <li>SQLAlchemy_utils</li>
         <li>OS</li>
+        <li>Math</li>
+        <li>Psycopg2</li>
     </ol></ul>
     <li>PostgreSQL</li>
     <li>Javascript</li>
