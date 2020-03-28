@@ -1,5 +1,7 @@
 <h1>Cost of American College Visualization Project</h1>
 
+![App Running](screenshot/screenshot.gif "App Running")
+
 <h2>Description</h2>
 <h4>The purpose of this project is to display working knowledge in the areas of data collection, database design, and data visualization</h4>
 <h4>Tools used in this project: </h4>
